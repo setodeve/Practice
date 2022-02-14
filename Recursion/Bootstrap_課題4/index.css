@@ -1,0 +1,25 @@
+.head-pic{
+  height: 70px;
+  width: 150px;
+}
+
+.marker {
+  background-color: yellow;
+  font-size: 1.2em;
+}
+
+.comment{
+  color:green;
+  font-size: 8em 
+}
+
+.earphone{
+  color:purple;
+  font-size: 8em 
+}
+
+.torophy{
+  color:yellow;
+  font-size: 8em 
+}
+
