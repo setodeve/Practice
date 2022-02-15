@@ -35,67 +35,61 @@ let animals = [
 //ボタン生成
 const numbers = document.getElementById("numbers") ;
 const numbersColumn = document.getElementById("numbersclm") ;
-
 const number = document.createElement("button")
 number.classList.add("col-2", "bg-white", "p-3", "border", "m-1", "text-center", "btn", "btn-light", "border-dark","number")
 
-for(let i=0; i<animals.length ;i++){
-  let tmp = number.cloneNode() ;
-  tmp.innerHTML = i+1;
-  tmp.setAttribute("value",i);
-  numbers.append(tmp);  
-}
 
 //画像表示
-let imageShowTestmain = document.getElementById("main") ;
-let imageShowTestextra = document.getElementById("extra") ;
-let SlideShowTest = document.getElementById("sliderShow") ;
-let SlideTest = document.getElementById("slider") ;
+const imageShowTestmain = document.getElementById("main") ;
+const imageShowTestextra = document.getElementById("extra") ;
+const SlideShowTest = document.getElementById("sliderShow") ;
 
-let imagemain = document.createElement("img") ;
-let imageextra = document.createElement("img") ;
+const imagemain = document.createElement("img") ;
+const imageextra = document.createElement("img") ;
 imagemain.classList.add("col-10", "pic") ;
 imageextra.classList.add("col-10", "pic") ;
 
-//ボタン押下時
-const numQueryid = document.getElementById("numbers") ;
-const imagetxt = document.getElementById("numbersclm") ;
-
-let divtext = document.createElement("div") ;
-
-let current = 0 ;
-let before = 0 ;
+const divtext = document.createElement("div") ;
 
 imageShowTestmain.classList.add("expand-animation") ;
 imageShowTestextra.classList.add("deplete-animation") ;
 
-//ボタンが押された時のイベントリスナー
-numQueryid.addEventListener("click",function(event){
+
+for(let i=0; i<animals.length ;i++){
   
-  before = current ;
-  if(before==0)  before = event ;
-  current = event ;
+  let tmp = number.cloneNode() ;
+  tmp.innerHTML = i+1;
+  numbers.append(tmp);  
 
-  imagemain.src = animals[current.target.value].imgUrl ;
-  imageextra.src = animals[before.target.value].imgUrl ;
+  //ボタンが押された時のイベントリスナー
+  tmp.addEventListener("click",function(){
+    divtext.innerText = 
+    `
+      Name : ${animals[i].name}
+      Price : ${animals[i].price} 
+    `    
+    animalHelper(i);
+  });
 
-  divtext.innerText = 
-  `
-   Name : ${animals[current.target.value].name}
-   Price : ${animals[current.target.value].price} 
-   `
-   
+}
+
+function animalHelper(i){
+  let before = SlideShowTest.getAttribute("index") ;
+  let current = i ;
+
+  SlideShowTest.setAttribute("index", current ) ;
+
+  imagemain.src = animals[current].imgUrl ;
+  imageextra.src = animals[before].imgUrl ;
+
   imageShowTestmain.append(imagemain) ;
   imageShowTestextra.append(imageextra) ;   
 
-  if(before.target.value < current.target.value){
-    SlideShowTest.append(imageShowTestextra) ;
-    SlideShowTest.append(imageShowTestmain) ; 
-  }else if(before.target.value >= current.target.value){
-    SlideShowTest.append(imageShowTestmain) ; 
-    SlideShowTest.append(imageShowTestextra) ;
+  if(before < current){
+    SlideShowTest.append(imageShowTestextra,imageShowTestmain) ;
+  }else if(before >= current){ 
+    SlideShowTest.append(imageShowTestmain,imageShowTestextra) ;
   }
 
   numbersColumn.append(divtext,numbers) ;
-});
-
+}
