@@ -1,5 +1,4 @@
 
-
 class Animal {
     constructor(name, price, imgUrl){
         this.name = name;
@@ -8,7 +7,7 @@ class Animal {
     }
 }
 
-let zoo = [
+let animals = [
     new Animal ('Tiger', 100, 'https://cdn.pixabay.com/photo/2015/12/18/13/46/tiger-1098607__340.jpg'),
     new Animal ('Elephant', 200, 'https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636__480.jpg'),
     new Animal ('Parrot', 30, 'https://cdn.pixabay.com/photo/2018/09/22/17/05/parrot-3695678__340.jpg'),
@@ -30,7 +29,7 @@ let zoo = [
     new Animal ('Icebear', 210, 'https://cdn.pixabay.com/photo/2017/08/14/20/33/polar-bear-2641842__340.jpg'),
     new Animal ('Cheetah', 190, 'https://cdn.pixabay.com/photo/2018/06/14/22/22/cheetah-3475778__340.jpg'),
     new Animal ('Koala', 30, 'https://cdn.pixabay.com/photo/2013/01/14/12/21/koala-74908__340.jpg'),
-    new Animal ('Penguin', 25, 'https://cdn.pixabay.com/photo/2016/09/29/16/40/king-penguin-1703294__340.jpg'),
+    new Animal ('Penguin', 25, 'https://cdn.pixabay.com/photo/2016/09/29/16/40/king-penguin-1703294__340.jpg')
 ];
 
 //ボタン生成
@@ -40,7 +39,7 @@ const numbersColumn = document.getElementById("numbersclm") ;
 const number = document.createElement("button")
 number.classList.add("col-2", "bg-white", "p-3", "border", "m-1", "text-center", "btn", "btn-light", "border-dark","number")
 
-for(let i=0; i<zoo.length ;i++){
+for(let i=0; i<animals.length ;i++){
   let tmp = number.cloneNode() ;
   tmp.innerHTML = i+1;
   tmp.setAttribute("value",i);
@@ -53,15 +52,10 @@ let imageShowTestextra = document.getElementById("extra") ;
 let SlideShowTest = document.getElementById("sliderShow") ;
 let SlideTest = document.getElementById("slider") ;
 
-let divimage = document.createElement("div") ;
-divimage.classList.add("d-flex", "justify-content-center")
-
 let imagemain = document.createElement("img") ;
 let imageextra = document.createElement("img") ;
 imagemain.classList.add("col-10", "pic") ;
 imageextra.classList.add("col-10", "pic") ;
-
-divimage.append(imagemain) ;
 
 //ボタン押下時
 const numQueryid = document.getElementById("numbers") ;
@@ -82,34 +76,21 @@ numQueryid.addEventListener("click",function(event){
   if(before==0)  before = event ;
   current = event ;
 
-
-  imagemain.src = zoo[current.target.value].imgUrl ;
-  imageextra.src = zoo[before.target.value].imgUrl ;
+  imagemain.src = animals[current.target.value].imgUrl ;
+  imageextra.src = animals[before.target.value].imgUrl ;
 
   divtext.innerText = 
   `
-   Name : ${zoo[current.target.value].name}
-   Price : ${zoo[current.target.value].price} 
+   Name : ${animals[current.target.value].name}
+   Price : ${animals[current.target.value].price} 
    `
-   console.log("before") ;  
-   console.log(before.target) ;
-   console.log("current") ;
-   console.log(current.target) ;
 
-  if(before.target.value < current.target.value){
-    console.log("oooooo") ;
+  imageShowTestmain.append(imagemain) ;
+  imageShowTestextra.append(imageextra) ;   
 
-    imageShowTestextra.append(imageextra) ;
-    imageShowTestmain.append(divimage) ;
-
-    
-    SlideShowTest.append(imageShowTestextra,imageShowTestmain) ; 
+  if(before.target.value <= current.target.value){
+    SlideShowTest.append(imageShowTestextra, imageShowTestmain) ; 
   }else if(before.target.value >= current.target.value){
-    console.log("ssssssssss") ;
-
-    imageShowTestmain.append(divimage) ;
-    imageShowTestextra.append(imageextra) ;
-    
     SlideShowTest.append(imageShowTestmain, imageShowTestextra) ;
   }
 
