@@ -66,12 +66,12 @@ let divtext = document.createElement("div") ;
 let current = 0 ;
 let before = 0 ;
 
+imageShowTestmain.classList.add("expand-animation") ;
+imageShowTestextra.classList.add("deplete-animation") ;
+
 //ボタンが押された時のイベントリスナー
 numQueryid.addEventListener("click",function(event){
-
-  imageShowTestextra.classList.add("deplete-animation") ;
-  imageShowTestmain.classList.add("expand-animation") ;
-
+  
   before = current ;
   if(before==0)  before = event ;
   current = event ;
@@ -84,14 +84,16 @@ numQueryid.addEventListener("click",function(event){
    Name : ${animals[current.target.value].name}
    Price : ${animals[current.target.value].price} 
    `
-
+   
   imageShowTestmain.append(imagemain) ;
   imageShowTestextra.append(imageextra) ;   
 
-  if(before.target.value <= current.target.value){
-    SlideShowTest.append(imageShowTestextra, imageShowTestmain) ; 
+  if(before.target.value < current.target.value){
+    SlideShowTest.append(imageShowTestextra) ;
+    SlideShowTest.append(imageShowTestmain) ; 
   }else if(before.target.value >= current.target.value){
-    SlideShowTest.append(imageShowTestmain, imageShowTestextra) ;
+    SlideShowTest.append(imageShowTestmain) ; 
+    SlideShowTest.append(imageShowTestextra) ;
   }
 
   numbersColumn.append(divtext,numbers) ;
