@@ -7,6 +7,17 @@
 }
 
 .amount{
-  border: double 5px white;
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+  border: solid 2px white;
   background: #1A4567;
+  color: white;
+}
+
+.calculation-box{
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+  border: solid 2px white;
+  background: #1A4567;
+  color: white;
 }
