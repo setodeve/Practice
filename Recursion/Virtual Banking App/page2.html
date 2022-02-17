@@ -5,10 +5,39 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+  
   <!-- fontawesome -->
   <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="index.css">
   <title>Page 2</title>
 </head>
 <!-- ここから記述してください。 -->
+<body>
+  <div class="vh-100 bg-dark d-flex justify-content-center align-items-center">
+    <div class="bg-green text-white col-8 h-auto" >
+      <div class="py-2 text-right" id="submitinfo">
+        <p>Your Name: Kaiden Herman</p>
+        <p>Your Back ID: 12345678</p>
+        <p>Your First Deposit: $205.00</p>
+      </div>
+      <div class="py-2 mb-2 text-right d-flex flex-wrap bg-danger justify-content-between align-items-center" id="availablebalance">
+        <p class="mb-0 ml-2 font-weight-bold">Available Balance</p>
+        <p class="mb-0 mr-2 font-weight-bold">$12,345</p>
+      </div>
+      <div id="menu" class="d-flex flex-wrap text-center justify-content-between align-items-center">
+          <button type="button" class="btn btn-lg btn-block text-white col-sm-12 col-md-12 col-lg-3 bg-blue mx-lg-1 my-2">
+            <p class="font-weight-bold">WITHDRAWAL</p>
+            <i class="fas fa-wallet fa-4x"></i>
+          </button>
+          <button type="button" class="btn btn-lg btn-block text-white col-sm-12 col-md-12 col-lg-4 bg-blue mx-lg-1 my-2">
+            <p class="font-weight-bold">DEPOSIT</p>
+            <i class="fas fa-coins fa-4x"></i> 
+        </button>
+          <button type="button" class="btn btn-lg btn-block text-white col-sm-12 col-md-12 col-lg-4 bg-blue mx-lg-1 my-2 ">
+            <p class="font-weight-bold">COME BACK LATER</p>
+            <i class="fas fa-home fa-4x"></i>
+          </button>
+      </div>
+    </div>
+  </div>
+</body>
