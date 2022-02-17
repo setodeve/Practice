@@ -5,3 +5,8 @@
 .bg-blue{
   background-color: #1A4567;
 }
+
+.amount{
+  border: double 5px white;
+  background: #1A4567;
+}
