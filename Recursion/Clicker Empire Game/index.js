@@ -152,6 +152,7 @@ function initializeUser(userload,loaddata){
   let loadbtn = document.getElementById("reload") ;
   loadbtn.addEventListener("click",function(){
     let loaddata = localStorage.getItem("Steven") ;
+    let burgernumele = document.querySelector("#text #burger") ;
     console.log("load") ;
 
     let tmp = JSON.parse(loaddata);
@@ -162,6 +163,7 @@ function initializeUser(userload,loaddata){
     user.assets = tmp.assets ;
     user.burger = tmp.burger ;
     user.name = "data" ;
+    burgernumele.innerHTML = `${user.burger} Burgers` ;
     console.log(user);
   });
 
