@@ -8,21 +8,6 @@ class User{
     this.burger = 0 ;
   }
 }
-/*
-Assetsクラス必要ないかも？
-　⇨配列で情報持っといて表示させるだけのため
-使うかもしれないんで残しとく
-class Assets{
-  constructor(assetsname,type,max,rate,value,url){
-    this.assetsname = assetsname ;
-    this.type = type ;
-    this.rate = rate ;
-    this.max = max ;
-    this.value = value ;
-    this.url  = url ;
-  }
-}
-*/
 
 const config = {
   right : document.getElementById("right"),
@@ -121,41 +106,35 @@ const assetsdata =
   }
 ]
 let user1 =
-`[
+`
   {
     "name" : "Steven",
     "age" : 20,
     "money" : 50000,
     "days" : 0,
-    "assets" : {"FlipMachine":1}
+    "assets" : {
+      "FlipMachine":{
+        "type" : "skill",
+        "number":1
+      }
+    }
   }
-]`
-
+`
 
 //User情報を初期化
-function initializeUser(){
+function initializeUser(userload,loaddata){
+  
   let userJsonString = user1 ;
+
   //userJsonString = prompt("Jsonを貼り付けてください") ;
-  console.log(userJsonString);
+  //console.log(userJsonString);
   
   //JSONがにゅりょくされているかチェック
   if(userJsonString == `` ) initializeUser();
-
+  
   let jsonDecodeduser = JSON.parse(userJsonString);
-  let user = new User(jsonDecodeduser[0].name, jsonDecodeduser[0].age, jsonDecodeduser[0].money, jsonDecodeduser[0].days, jsonDecodeduser[0].assets) ;
 
-  //use情報
-  console.log(user);
-
-  //1
-  console.log(jsonDecodeduser[0]["assets"]["Flip Machine"]);
-
-  //Steven
-  console.log(jsonDecodeduser[0].name);
-
-  //localStorage.setItem(jsonDecodeduser[0].name, user) ;
-
-  console.log(localStorage) ;
+  let user = new User(jsonDecodeduser.name, jsonDecodeduser.age, jsonDecodeduser.money, jsonDecodeduser.days, jsonDecodeduser.assets) ;
 
   //HTML初期化
   initializeHTML(user) ;
@@ -163,38 +142,53 @@ function initializeUser(){
   //saveボタン
   let savebtn = document.getElementById("save") ;
   savebtn.addEventListener("click",function(){
-    user.days += 1 ;
-    localStorage.setItem(jsonDecodeduser[0].name, user) ;
+    let tmp = JSON.stringify(user) ;
+    localStorage.setItem("Steven", tmp) ;
     console.log("save") ;
-    console.log(user) ;
     console.log(localStorage) ;
   });
 
   //reloadボタン
   let loadbtn = document.getElementById("reload") ;
   loadbtn.addEventListener("click",function(){
-    let loaddata = localStorage.getItem(jsonDecodeduser[0].name) ;
+    let loaddata = localStorage.getItem("Steven") ;
     console.log("load") ;
-    console.log(user) ;
-    console.log(loaddata) ;
+
+    let tmp = JSON.parse(loaddata);
+    console.log(tmp);
+    user.money = tmp.money ;
+    user.age = tmp.age ;
+    user.days = tmp.days ;
+    user.assets = tmp.assets ;
+    user.burger = tmp.burger ;
+    user.name = "data" ;
+    console.log(user);
   });
 
 //1000msカウント
-    let birthday = 0 ;
+  let birthday = 0 ;
 
-    setInterval(function(){
-        let ageele = document.querySelector("#age") ;
-        let daysele = document.querySelector("#days") ;  
-        
-        user.days += 1
-        daysele.innerHTML = `${user.days} days` ;
-        birthday++ ;
-        if(birthday == 365 ){
-          birthday = 0 ;
-          user.age += 1 ;
-          ageele.innerHTML = `${user.age} yrs old` ;
-        }
-    },1000)
+  setInterval(function(){
+      let ageele = document.querySelector("#age") ;
+      let daysele = document.querySelector("#days") ;  
+      let usermoney = document.querySelector("#money") ;
+      user.days += 1
+      daysele.innerHTML = `${user.days} days` ;
+      
+      if(birthday == 365 ){
+        birthday = 0 ;
+        user.age += 1 ;
+        ageele.innerHTML = `${user.age} yrs old` ;
+      }
+      if(user.age>=100){
+        alert(`GameOver`)
+        location.reload();
+      }
+      calcHelper(user) ;
+      
+      usermoney.innerHTML = `$${user.money}` ;
+      
+  },1000)
 
 }
 
@@ -211,14 +205,12 @@ function burgerclick(user){
 
     user.burger += 1
     burgernumele.innerHTML = `${user.burger} Burgers` ;
+
+    user.money += (25 * parseInt(user.assets["FlipMachine"]["number"])) ;
     
-    console.log(user.money) ;
-    
-    user.money += (25 * user.assets["FlipMachine"]) ;
     usermoney.innerHTML = `$${user.money}` ;
     
-    console.log(user.money) ;
-    console.log((25 * user.assets["FlipMachine"])) ;
+
   }) ;
 }
 
@@ -242,6 +234,7 @@ function initializeHTML(user){
   config.right.innerHTML += reloadsave ;
 
   for(let i=0 ; i<assetsdata.length ; i++){
+    
     let assetinfo = "#" + assetsdata[i]["assetsname"] ;
     let assetsector = document.querySelector(assetinfo);
 
@@ -319,8 +312,9 @@ function listsHTML(user){
 
   for(let i=0 ; i<assetsdata.length ; i++){
     let assetsnum = 0
+    
     if(user.assets[assetsdata[i]["assetsname"]] != undefined){
-      assetsnum = user.assets[assetsdata[i]["assetsname"]];
+      assetsnum = user.assets[assetsdata[i]["assetsname"]]["number"];
     }
     
     const listele = 
@@ -350,7 +344,7 @@ function listsHTML(user){
 
 }
 
-//
+//reloadsave
 function reloadsaveHTML(){
   const reloadsave =
   `
@@ -412,13 +406,14 @@ function assetHTML(user,assetinfo){
 
   //PurchaseTotal
   let totalformele = document.querySelector("#purchase-form") ;
-  let totalele = document.querySelector("#purchaseTotal") ;
   let total = 0 ;
   let cnt = 0 ;
 
   totalformele.addEventListener("change",function(){
-    cnt = this.value
+    cnt = this.value ;
     total = cnt * assetinfo["value"] ;
+    let totalele = document.querySelector("#purchasetotal") ;
+
     totalele.innerHTML = `Total : $${total}` ;
   })
 
@@ -430,7 +425,7 @@ function assetHTML(user,assetinfo){
   //Purchase
   let nextele = document.querySelector(".next-btn") ;
   nextele.addEventListener("click",function(){
-    purchase(user,assetinfo,cnt) ;
+    purchase(user,assetinfo,parseInt(cnt)) ;
     initializeHTML(user) ;
   })
 }
@@ -453,25 +448,30 @@ function purchase(user,assetinfo,cnt){
 
 function asssetinvest(user,assetinfo,cnt){
   let assetname = assetinfo["assetsname"] ;
-  
+
   if(user.money >= assetinfo["value"]*cnt){
     if(user.assets[assetname]===undefined){
-      user.assets[assetname] = { 
+      user.assets[assetname] = {
         "type" : "investment",
-        "number" : cnt, 
-        "purchased" : user.money
+        "number" : parseInt(cnt), 
+        "purchased" : parseInt(assetinfo["value"]),
+        "rate" : assetinfo["rate"]
       } ;
     }else{
-      user.assets[assetname] = { 
-        "type" : "investment",
+      user.assets[assetname] = {
+        "type" : "investment", 
         "number" : parseInt(cnt) + parseInt(user.assets[assetname]["number"]), 
-        "purchased" : user.money
+        "purchased" : parseInt(assetinfo["value"]),
+        "rate" : assetinfo["rate"]
       } ;
     }
+
     user.money -= (assetinfo["value"] * cnt) ;
     if(user.assets[assetname] == "ETFStock"){
       assetinfo["value"] = assetinfo["value"] + Math.floor(assetinfo["value"]*10/100) ;
     }
+  }else{
+    unPurchaseValue(user,assetinfo,cnt) ;
   }
 
 }
@@ -479,34 +479,69 @@ function asssetinvest(user,assetinfo,cnt){
 function asssetestate(user,assetinfo,cnt){
   let assetname = assetinfo["assetsname"] ;
   
-  if(user.money >= assetinfo["value"]*cnt){    
-    if(user.assets[assetname]===undefined){
-      user.assets[assetname] = { 
-        "type" : "estate",
-        "number" : cnt, 
-        "purchased" : assetinfo["value"]
-      } ;
+  if( (user.money >= assetinfo["value"]*cnt) ){
+    if(user.assets[assetname]["number"]+cnt <= assetinfo["max"]){
+      if(user.assets[assetname]===undefined){
+        user.assets[assetname] = { 
+          "type" : "estate",
+          "number" : cnt,
+          "rate" : parseInt(assetinfo["rate"])
+        } ;
+      }else{
+        user.assets[assetname]["number"] = cnt + parseInt(user.assets[assetname]["number"]) ;
+      }
+        user.money -= (assetinfo["value"] * cnt) ;  
     }else{
-      user.assets[assetname]["number"] = parseInt(cnt) + parseInt(user.assets[assetname]["number"]) ;
+      unPurchaseNum(user,assetinfo,cnt);      
     }
-    user.money -= (assetinfo["value"] * cnt) ;
+  }else{
+    unPurchaseValue(user,assetinfo,cnt) ;
   }
 }
 
 function asssetskill(user,assetinfo,cnt){
   
   let assetname = assetinfo["assetsname"] ;
-  
+
   if(user.money >= assetinfo["value"] * cnt){
-    user.assets[assetname] += parseInt(cnt) ;
-    user.money -= (assetinfo["value"] * cnt) ;
+    if(user.assets[assetname]["number"]+ cnt <= assetinfo["max"]){
+      user.assets[assetname]["number"] += cnt ;
+      user.money -= (assetinfo["value"] * cnt) ;
+    }else{
+      unPurchaseNum(user,assetinfo,cnt);
+    }
+  }else{
+    unPurchaseValue(user,assetinfo,cnt) ;
   }
-  console.log(user.assets[assetname]) ;
-}
-
-function purchaseConfirm(user,assetinfo){
 
 }
 
+function unPurchaseNum(user,assetinfo,cnt){
+  let assetname = assetinfo["assetsname"] ;
+  alert("購入できませんでした。 所持数 : "+user.assets[assetname]["number"]+"、購入予定数 : " + cnt + "、購入可能Max : " + assetinfo["max"]) ; 
+}
+
+function unPurchaseValue(user,assetinfo,cnt){
+  alert("購入できませんでした。 所持金 : "+user.money + "、購入金額 : " + assetinfo["value"]*cnt) ;
+}
+
+//計算
+function calcHelper(user){
+  Object.keys(user.assets).forEach(function (key) {
+    if(user.assets[key]["type"]!=="skill"){
+      let number = user.assets[key]["number"] ;
+      let rate = user.assets[key]["rate"] ;
+      let total = 0 ;
+      
+      if(user.assets[key]["type"] === "investment"){
+        let purchased = user.assets[key]["purchased"] ;
+        total += purchased + (Math.floor(purchased * rate)*number) ;
+      }else{
+        total += number*rate ;
+      }
+      user.money += total ;
+    }
+  });
+}
 //user初期化
-initializeUser() ;
+initializeUser(false,0) ;
