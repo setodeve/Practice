@@ -8,16 +8,18 @@ function countHelper(){
   let num ;
   start.addEventListener("click",function(){
     if(num == null){
-      getTime("開始") ;
       num = window.setInterval(function(){
         display.innerHTML = cnt++;
       }, 1000);
+      getTime("開始") ;
     }
 
   });
 
   end.addEventListener("click",function(){
     if(num !== null){
+      cnt = 0
+      display.innerHTML = cnt ;
       getTime("終了") ;
       clearInterval(num) ;
       num = null ;
