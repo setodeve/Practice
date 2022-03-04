@@ -1,0 +1,9 @@
+.container{
+  height: 100px;
+}
+
+.photo-viewer{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
