@@ -29,7 +29,7 @@ class ListController < ApplicationController
   
   def order_update
 
-    if @list.order == true
+    if @list.order
       @list.order = false
     else
       @list.order = true
@@ -37,7 +37,7 @@ class ListController < ApplicationController
     if @list.save
       redirect_to :root
     else
-      render action: :edit
+      redirect_to :root
     end
   end
 
