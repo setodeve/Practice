@@ -1,5 +1,7 @@
 class ListController < ApplicationController
   before_action :set_list, only: %i(edit update destroy)
+  before_action :set_list, only: %i(order_update)
+
 
   def new
     @list = List.new
@@ -24,6 +26,20 @@ class ListController < ApplicationController
       render action: :edit
     end
   end
+  
+  def order_update
+
+    if @list.order == true
+      @list.order = false
+    else
+      @list.order = true
+    end
+    if @list.save
+      redirect_to :root
+    else
+      render action: :edit
+    end
+  end
 
   def destroy
     @list.destroy
@@ -33,6 +49,14 @@ class ListController < ApplicationController
   private
     def list_params
       params.require(:list).permit(:title).merge(user: current_user)
+    end
+
+    def order_param
+      if @list.order == true
+        @list.order = false
+      else
+        @list.order = true
+      end
     end
 
     def set_list
