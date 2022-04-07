@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true
   validates :self_introduction, length: { maximum: 500 }
+  
+  has_many :reactions
+  has_many :chat_room_users
+  has_many :chat_rooms, through: :chat_room_users
+  has_many :chat_messages
 
   enum gender: { man: 0, woman: 1 }
 
