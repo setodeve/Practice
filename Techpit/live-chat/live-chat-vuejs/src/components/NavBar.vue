@@ -10,6 +10,8 @@
 
 <script>
 import axios from 'axios'
+import removeItem from '../auth/removeItem'
+
 export default {
   data () {
     return {
@@ -29,10 +31,7 @@ export default {
         })
         
         console.log("ログアウトしました")
-        window.localStorage.removeItem('access-token')
-        window.localStorage.removeItem('client')
-        window.localStorage.removeItem('uid')
-        window.localStorage.removeItem('name')
+        removeItem()
 
         return res
       } catch (error) {
