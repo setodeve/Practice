@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    </head>   
+    <body>
+      <div id="app">
+          <div>
+            {{ dateTime }}
+            date : <input type="datetime-local" v-model="dateTime" min="2021-01-01T00:00" max="2021-12-31T23:59">
+          </div>
+      </div>
+      <script src="./index.js"></script>
+    </body>
+</html>
