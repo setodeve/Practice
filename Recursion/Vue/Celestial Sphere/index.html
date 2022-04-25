@@ -4,17 +4,98 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
+        <!-- Vue.js CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     </head>   
-    <body>
+
+    <body>   
       <div id="app">
-          <div>
-            {{ dateTime }}
-            date : <input type="datetime-local" v-model="dateTime" min="2021-01-01T00:00" max="2021-12-31T23:59">
+          <label>calclate date:</label>
+          <input
+              type="datetime-local"
+              v-model="datetimeString"
+              min="2021-01-01T00:00"
+              max="2021-12-31T23:59"
+          />
+
+          <p>a:{{ getCelestialSphere("a") }}</p>
+          <!-- aの値を表示してください。 -->
+
+          <p>b:{{ getCelestialSphere("b") }}</p>
+          <!-- bの値を表示してください。 -->
+
+          <p>days:{{ getCelestialSphere("termDays") }}</p>
+          <!-- termDaysの値を表示してください。 -->
+
+          <p>P:{{ getCelestialSphere("capitalP") }}</p>
+          <!-- capitalPの値を表示してください。 -->
+
+
+          <p>Q:{{ getCelestialSphere("capitalQ") }}</p>
+          <!-- capitalQの値を表示してください。 -->
+
+
+          <p>Y:{{ getCelestialSphere("capitalY") }}</p>
+          <!-- capitalYの値を表示してください。 -->
+
+
+          <p>S:{{ getCelestialSphere("capitalS") }}</p>
+          <!-- capitalSの値を表示してください。 -->
+
+
+          <p>T:{{ getCelestialSphere("capicalT") }}</p>
+          <!-- capitalTの値を表示してください。 -->
+
+
+          <p>t:{{ getCelestialSphere("t") }}</p>
+          <!-- tの値を表示してください。 -->
+
+
+          <p>θ:{{ getCelestialSphere("theta") }}</p>
+          <!-- thetaの値を表示してください。 -->
+
+
+          <p>cosNθ</p>
+          
+          
+          <tr>
+              <th>N</th>
+              <th>cosNθ</th>
+          </tr>
+          
+          <div v-for='(cos, index) in getCelestialSphere("cosList")'>
+              <tr>
+                  <td>{{ index }}</td>
+                  <td>{{ cos.toPrecision(4) }}</td>
+              </tr>
           </div>
+          <!-- Vue.jsのリストレンダリングを使って、NとcosNθの値をそれぞれ{N, cosNθ}表示してください。 -->
+
+
+          <table>
+              <thead>
+              <tr>
+                  <th>視赤経Ｒ.Ａ.</th>
+                  <th>視赤緯Ｄｅｃ</th>
+                  <th>地心距離Ｄｉｓｔ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                  <!-- rightAscensionの値を表示してください。 -->
+                  <td>{{ getCelestialSphere("rightAscension").toPrecision(4) }}</td>
+
+                  <!-- declinationの値を表示してください。 -->
+                  <td>{{ getCelestialSphere("declination").toPrecision(4) }}</td>
+
+                  <!-- distanceの値を表示してください。 -->
+                  <td>{{ getCelestialSphere("distance").toPrecision(4) }}</td>
+              </tr>
+              </tbody>
+          </table>
+
       </div>
-      <script src="./index.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>
