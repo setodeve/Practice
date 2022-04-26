@@ -33,15 +33,15 @@
                                     <h5 class="card-title">Name : {{ name }}</h5>
                                     <h5 class="card-title">Class : {{ jobName }}</h5>
                                     <h5 class="card-title">Gender : {{ checkGender(gender) }}</h5>
-                                    <h5 class="card-title m-0">Traits : {{ traits }}</h5>
+                                    <h5 class="card-title m-0" @change="initSkill()">Traits : {{ checkskill(traits) }}</h5>
                                 </div>
                                 
                                 <div class='mt-2 border border-white border-4 rounded-3 px-3 py-1'>
-                                    <h5 class="card-title">Strength : 10</h5>
-                                    <h5 class="card-title">Agility : 10</h5>
-                                    <h5 class="card-title">Resilience : 10</h5>
-                                    <h5 class="card-title">Wisdom : 10</h5>
-                                    <h5 class="card-title m-0">Luck : 10</h5>
+                                    <h5 class="card-title">Strength : {{ Strength }}</h5>
+                                    <h5 class="card-title">Agility : {{ Agility }}</h5>
+                                    <h5 class="card-title">Resilience : {{ Resilience }}</h5>
+                                    <h5 class="card-title">Wisdom : {{ Wisdom }}</h5>
+                                    <h5 class="card-title m-0">Luck : {{ Luck }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
 
                 <div class="mb-3 row">
                     <label for="inputName" class="col-sm-1 col-form-label text-white">Gender</label>
-                    <div class="col-sm-3 mt-2">
+                    <div class="col-sm-3 mt-2" @change="initTraits()">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" v-model="gender">
                             <label class="form-check-label text-white" for="inlineRadio1">Male</label>
@@ -77,7 +77,7 @@
                 <div class="mb-3 row">
                     <label for="inputName" class="col-sm-1 col-form-label text-white">Class</label>
                     <div class="col-sm-3">
-                        <select class="form-select" aria-label="Default select example" v-model="jobName">
+                        <select class="form-select" @change="changeJob()" aria-label="Default select example" v-model="jobName">
                             <option value="Hero">Hero</option>
                             <option value="Warrior">Warrior</option>
                             <option value="Mage">Mage</option>
@@ -88,12 +88,12 @@
                 <div class="mb-3 row">
                     <label for="inputName" class="col-sm-1 col-form-label text-white">Traits</label>
                     <div class="col-sm-3">
-                        <select class="form-select" aria-label="Default select example" v-model="traits">
-                            <option value="Everyman">Everyman</option>
-                            <option value="Bat out of hell">Bat out of hell</option>
-                            <option value="Brave">Brave</option>
-                            <option value="Lucky devil">Lucky devil</option>
-                            <option value="Tomboy">Tomboy</option>
+                        <select class="form-select" @change="changeSkill()" aria-label="Default select example" v-model="traits">
+                            <option value="0">{{ checkskill(0) }}</option>
+                            <option value="1">{{ checkskill(1) }}</option>
+                            <option v-if="jobName === 'Hero'"  value="2">{{ checkskill(2) }}</option>
+                            <option v-if="gender === '0' " value="3">{{ checkskill(3) }}</option>
+                            <option v-if="gender === '1' " value="4">{{ checkskill(4) }}</option>
                         </select>
                     </div>
                 </div>
