@@ -4,33 +4,30 @@ new Vue({
   data() {
     return{
       displayNum: '',
+      cnt: 0,
       resultNum: 0,
     };
   },
   methods:{
     display(num){
+      const regexh = /[\+\-\/\*]/g;
+      let formu = this.displayNum ;
+      if( (formu[formu.length-1]!=undefined)&&
+          (formu[formu.length-1].match(regexh)!=null)&&
+          num.match(regexh) != null){
+        return ;
+      }
       this.displayNum += num ;
     },
     splitNum(){
-      const regex = /[0-9]/g;
-      const regexh = /\s/g;
-      // const regexh = /\s[\+\-\/]\s/g;
+      const regexh = /([\+\-\/\*])/g;
       let formu = this.displayNum ;
-      // console.log(formu.split(regexh));
       let splited = formu.split(regexh) ;
       this.calcnum(splited) ;
-      // for(let i=0 ; i<formu.length ; i++){
-      //   if(formu[i].match(regex)!=null){
-      //     console.log(formu[i]);
-      //   }else{
-      //     console.log("break");
-      //   }
-      // }
     },
     calcnum(num){
       let calc = 0 ;
       let i = 0 ;
-      const regexh = /[\+\-\/\*]/g;
 
       while(num[i]!=undefined){
         if(i <= 0){
