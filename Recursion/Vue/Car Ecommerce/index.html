@@ -18,13 +18,13 @@
     </head>
     <body>
 
-        <div class="container mt-5">
+        <div class="container mt-5" id="cars">
 
             <div class="d-flex">
                 <div class="mx-2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Category</option>
-                        <option value="1">Telsa</option>
+                    <select v-model="selCategory"  class="form-select" aria-label="Default select example">
+                        <option value="0" selected>Category</option>
+                        <option value="1">Tesla</option>
                         <option value="2">Porsche</option>
                         <option value="3">Toyota</option>
                         <option value="4">Honda</option>
@@ -39,8 +39,8 @@
                 
 
                 <div>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Sort by:</option>
+                    <select v-model="selctSort" class="form-select" aria-label="Default select example">
+                        <option value="0" selected>Sort by:</option>
                         <option value="1">Price: Low to High</option>
                         <option value="2">Price: High to Low</option>
                         <option value="3">Newest Arrivals</option>
@@ -49,9 +49,9 @@
     
             </div>
             
-            <div class="d-flex flex-wrap pt-4" id="cars">
+            <div class="d-flex flex-wrap pt-4">
                 <cars-list 
-                    v-for="(car, key, index) in item" 
+                    v-for="(car, key, index) in checkSort" 
                     v-bind:key="index" 
                     v-bind:car="car"
                 ></cars-list>

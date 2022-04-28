@@ -1,5 +1,4 @@
-
-let CarsList = Vue.component('cars-list', {
+Vue.component('cars-list', {
   props:['car'],
   template: `
     <div class="card m-2" style="width: 18rem;">
@@ -13,7 +12,6 @@ let CarsList = Vue.component('cars-list', {
     </div>
     `
 })
-
 
 new Vue({
   el: '#cars',
@@ -40,15 +38,39 @@ new Vue({
       {name: "X3", category: "BMW", price: 43000, date: "2018-03-11", carimg: "https://media.istockphoto.com/photos/-picture-id1206921084?k=6&m=1206921084&s=612x612&w=0&h=o8ETeAQHAuzOerMorNWxPnDpyhSyrxiy6vvIQ8TLd4Y="},
       {name: "2 Series", category: "BMW", price: 37500, date: "2019-01-15", carimg: "https://media.istockphoto.com/photos/coupe-competition-picture-id1187329409?k=6&m=1187329409&s=612x612&w=0&h=qDHLX8yA8WVGmEwFU8k56z72uobZfcGkHH14zzpLPc4="},
     ],
+    selCategory:0,
+    selctSort:0,
+    category:["Category","Tesla","Porsche","Toyota","Honda","Mazda","Mercedes-Benz","Lexus","Lamborghini","Audi","BMW"],
+    sortby:["Sort by:","Price: Low to High","Price: High to Low","Newest Arrivals"]
   },
   methods:{
-
+    filtered(ele,num){
+      if(num==0){
+        //asc
+        return this.item.sort(function(a,b){
+          if(a[ele] > b[ele]) return 1 ;
+          else return -1 ;
+        })
+      }else{
+        //des
+        return this.item.sort(function(a,b){
+          if(a[ele] < b[ele]) return 1 ;
+          else return -1 ;
+        })
+      }
+    }
   },
   computed:{
-
-  },
-  components:{
-    CarsList: CarsList
+    checkCategory: function(){
+      if(this.category[this.selCategory]==="Category") return this.item ;
+      return this.item.filter(value => value["category"] === this.category[this.selCategory]) ;
+    },
+    checkSort: function(){
+      if(this.sortby[this.selctSort] === "Sort by:") return this.checkCategory ;
+      else if(this.sortby[this.selctSort] === "Price: Low to High") return this.filtered("price",0);
+      else if(this.sortby[this.selctSort] === "Price: High to Low") return this.filtered("price",1);
+      else if(this.sortby[this.selctSort] === "Newest Arrivals") return this.filtered("date",1);
+    }
   }
 })
 
