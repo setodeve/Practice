@@ -43,23 +43,6 @@ new Vue({
     category:["Category","Tesla","Porsche","Toyota","Honda","Mazda","Mercedes-Benz","Lexus","Lamborghini","Audi","BMW"],
     sortby:["Sort by:","Price: Low to High","Price: High to Low","Newest Arrivals"]
   },
-  methods:{
-    filtered(ele,num){
-      if(num==0){
-        //asc
-        return this.item.sort(function(a,b){
-          if(a[ele] > b[ele]) return 1 ;
-          else return -1 ;
-        })
-      }else{
-        //des
-        return this.item.sort(function(a,b){
-          if(a[ele] < b[ele]) return 1 ;
-          else return -1 ;
-        })
-      }
-    }
-  },
   computed:{
     checkCategory: function(){
       if(this.category[this.selCategory]==="Category") return this.item ;
