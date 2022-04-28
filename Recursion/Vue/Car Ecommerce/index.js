@@ -67,9 +67,9 @@ new Vue({
     },
     checkSort: function(){
       if(this.sortby[this.selctSort] === "Sort by:") return this.checkCategory ;
-      else if(this.sortby[this.selctSort] === "Price: Low to High") return this.filtered("price",0);
-      else if(this.sortby[this.selctSort] === "Price: High to Low") return this.filtered("price",1);
-      else if(this.sortby[this.selctSort] === "Newest Arrivals") return this.filtered("date",1);
+      if(this.sortby[this.selctSort] === "Price: Low to High") return this.checkCategory.sort((a,b)=> a.price - b.price);
+      if(this.sortby[this.selctSort] === "Price: High to Low") this.checkCategory.sort((a,b)=> b.price - a.price);
+      if(this.sortby[this.selctSort] === "Newest Arrivals") return this.checkCategory.sort((a,b)=> new Date(b.date) - new Date(a.date));
     }
   }
 })
