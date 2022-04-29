@@ -26,8 +26,8 @@
             <template v-for="(todo, index) in todos">
                 <div class="card w-50 my-1">
                     <div class="card-body">
-                        <input type="text" v-model="{{ todo }}">
-                        <h5 class="card-title">{{ todo }}</h5>
+                        <input :value="inputTodo" @input="inputTodo = $event.target.value">
+                        <h5  class="card-title">{{ inputTodo }}</h5>
                         <a @click="deleteTodo(index)" class="btn btn-primary mt-2">Delete</a>
                     </div>
                 </div>
