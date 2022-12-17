@@ -1,5 +1,6 @@
 const config = {
   url: "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:",
+  parent: document.getElementById('result')
 }
 
 function searchInput(){
@@ -8,6 +9,11 @@ function searchInput(){
   fetch(config.url + input)
   .then(jsondata => jsondata.json())
   .then(data => generateBookCard(data["ISBN:0451526538"]))
+  .catch(err => errshow(err))
+}
+
+function errshow(err){
+  config.parent.innerHTML = "Not Found"
 }
 
 function arrayJoin(array){
@@ -22,7 +28,6 @@ function arrayJoin(array){
 
 function generateBookCard(data){
 
-const parent = document.getElementById('result');
 const cardTemplate = `
     <div class="pb-3 pt-4">
     <p class="m-0">results</p>
@@ -64,7 +69,7 @@ const cardTemplate = `
     </div>
 
 `
-parent.innerHTML = cardTemplate;
+config.parent.innerHTML = cardTemplate;
 }
 
 const searchButton = document.getElementById("basic-text1")
