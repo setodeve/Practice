@@ -1,11 +1,13 @@
-function test(data){
-  console.log(data);
+const config = {
+  url: "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:",
 }
 
-function getInput(){
-  console.log(document.getElementById("search-input").value);
+function searchInput(){
+  const input = document.getElementById("search-input").value;
+  fetch(config.url + input)
+  .then(jsondata => jsondata.json())
+  .then(data => console.log(data))
 }
 
-const searchbutton = document.getElementById("basic-text1")
-searchbutton.addEventListener("click",getInput);
-test(1);
+const searchButton = document.getElementById("basic-text1")
+searchButton.addEventListener("click",searchInput);
