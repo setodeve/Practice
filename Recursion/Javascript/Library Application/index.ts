@@ -4,6 +4,7 @@ const config = {
 
 function searchInput(){
   const input = document.getElementById("search-input").value;
+  
   fetch(config.url + input)
   .then(jsondata => jsondata.json())
   .then(data => generateBookCard(data["ISBN:0451526538"]))
@@ -15,11 +16,12 @@ function arrayJoin(array){
   for(let i=0;i<array.length-1;i++){
     rtnString += array[i].name + ", "
   }
+
   return rtnString + array[array.length-1].name;
 }
 
 function generateBookCard(data){
-console.log(data)
+
 const parent = document.getElementById('result');
 const cardTemplate = `
     <div class="pb-3 pt-4">
