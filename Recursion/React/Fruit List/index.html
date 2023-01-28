@@ -4,27 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <title>Fluit List</title>
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel">
-          let dom = document.querySelector("#root");
-          const { useEffect } = React;
-          const App = () => {
-              useEffect(() => {
-                      console.log("Processed useEffect");
-                  })
-              return(
-                  <div>
-                      <p> CDN only で Reactが使えるか確認中 </p>
-                  </div>
-              );
-          }
-          ReactDOM.render(<App />, dom);
-  </script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="./index.js"></script>
 </body>
 </html>
