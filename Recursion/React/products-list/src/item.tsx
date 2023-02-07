@@ -4,9 +4,10 @@ import './item.css';
 
 function Item(props:any) {
   const image = props["data"]["data"]["image"]  ;
+  const name = props["data"]["data"]["name"]  ;
   return (
-      <div className="container_detail">
-        <img src={image} className="product-image" alt="phone"/>
+      <div className="detail">
+        <img src={image} className="product-image" alt={name}/>
         <p>Product Name</p>
         <p>¥*******~</p>
       </div>

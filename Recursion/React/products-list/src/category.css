@@ -1,0 +1,11 @@
+
+.category_container {
+  border: solid;  
+}
+
+.category_detail {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

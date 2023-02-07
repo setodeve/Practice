@@ -9,8 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Category data={{"image":'./phone.jpg',"name":"Phone"}}/>
-    <Category data={{"image":'./phone.jpg',"name":"Phone"}}/>
+    <h1>Category List</h1>
+    <Category data={{"image":`./phone.jpg`,"name":"Phone"}}/>
+    <Category data={{"image":'./Laptop.jpg',"name":"Laptop"}}/>
   </React.StrictMode>
 );
 
