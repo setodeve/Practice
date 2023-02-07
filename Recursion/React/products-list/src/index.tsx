@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Category from './category';
 import reportWebVitals from './reportWebVitals';
+import phone from './phone.jpg';
+import laptop from './Laptop.jpg';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,8 +12,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <h1>Category List</h1>
-    <Category data={{"image":`./phone.jpg`,"name":"Phone"}}/>
-    <Category data={{"image":'./Laptop.jpg',"name":"Laptop"}}/>
+    <Category data={{image:phone,name:"Phone"}}/>
+    <Category data={{image:laptop,name:"Laptop"}}/>
   </React.StrictMode>
 );
 

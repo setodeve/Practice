@@ -3,7 +3,7 @@ import './category.css';
 import Item from './item'
 
 function Category(props:any){
-  const name = props["data"]["name"] ;
+  const name = props.data.name ;
   return (
     <div>
       <h1>Category component</h1>

@@ -1,10 +1,9 @@
 import React from 'react';
-// import phone from './phone.jpg'
 import './item.css';
 
 function Item(props:any) {
-  const image = props["data"]["data"]["image"]  ;
-  const name = props["data"]["data"]["name"]  ;
+  const image = props.data.data.image  ;
+  const name = props.data.data.name  ;
   return (
       <div className="detail">
         <img src={image} className="product-image" alt={name}/>
