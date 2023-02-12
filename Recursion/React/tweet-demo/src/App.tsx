@@ -3,19 +3,13 @@ import { useState } from 'react';
 import './App.css';
 import dog from './dog.jpg';
 import bird from './bird.jpg';
+import Image from './Tweet-image'
 
-export default function App() {
-  return (
-    <div className="App">
-      App
-    </div>
-  );
-}
 
-export function Form() {
-  const [name, setName] = useState('') ;
-  const [id, setId] = useState('') ;
-  const [textarea, setText] = useState('') ;
+export default function Form() {
+  const [name, setName] = useState('name') ;
+  const [id, setId] = useState('id') ;
+  const [textarea, setText] = useState('text') ;
   const [image, setImage] = useState(dog) ;
 
   return (
@@ -48,18 +42,7 @@ export function Form() {
           <option value={bird}>bird</option>
         </select>
       </label>
-      {name !== '' &&
-        <p>{name}</p>
-      }
-      {id !== '' &&
-        <p>{id}</p>
-      }
-      {textarea !== '' &&
-        <p>{textarea}</p>
-      }
-      {
-        <img src={image} alt="test" />
-      }
+      <Image name={name} id={id} image={image} textarea={textarea}/>
     </div>
   );
 }
