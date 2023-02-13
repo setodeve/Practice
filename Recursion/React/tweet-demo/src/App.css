@@ -1,10 +1,11 @@
 .App {
   text-align: center;
+}
+.Tweet-image {
+  text-align: center;
   margin: auto;
   width: 50%;
-  padding: 10px;
 }
-
 .App-logo {
   width: 50px; 
   height: 50px; 
