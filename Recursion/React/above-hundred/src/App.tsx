@@ -5,25 +5,13 @@ type Props = {
   num: string
 }
 
-function HexAnalyze(num:string){
-  console.log("16dayo"+num)
-}
-
-function BinAnalyze(num:string){
-  console.log("2dayo"+num);
-}
-
 function NumberSort(num:string){
   // For Hex
-  if(num.substring(0,2)==="0x"){ 
-    return HexAnalyze(num.substring(2,num.length));
-  // For Bin
-  }else if(num.substring(num.length-1)==="b"){
-    return BinAnalyze(num.substring(0,num.length-1))
-  // For the Others
-  }else{
-    return num;
-  }
+  if(num.substring(0,2)==="0x") return parseInt(num,16);
+  //For Bin
+  else if(num.substring(num.length-1)==="b") return parseInt(num,2);
+  //For the Others
+  else return num
 }
 
 function HundredJudge(props:Props){
@@ -39,9 +27,9 @@ function HundredJudge(props:Props){
 export default function App() {
   return (
     <div>
-      {/* <HundredJudge num={"10"}/>
-      <HundredJudge num={"120"}/> */}
-      {/* <HundredJudge num={"0xAB"}/> */}
+      <HundredJudge num={"10"}/>
+      <HundredJudge num={"120"}/>
+      <HundredJudge num={"0xab"}/>
       <HundredJudge num={"100b"}/>
     </div>
   );
