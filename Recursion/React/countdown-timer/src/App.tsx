@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { useState } from 'react';
 
 type Props = {
   hours:Number,
@@ -16,6 +17,10 @@ function Timer(props:Props){
 
 //Timerに時間を渡しを表示する
 export default function App() {
+  const [hour, setHour] = useState(0);
+  const [minitue, setMinitue] = useState(0);
+  const [second, setSecond] = useState(0);
+
   <Timer hours={1} minitues={20} seconds={30}/>
   return (
     <div className="App">
