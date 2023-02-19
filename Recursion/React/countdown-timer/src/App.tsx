@@ -14,7 +14,7 @@ function TimeDivide(time : number){
   // console.log(hour)
   // console.log(minitue)
   // console.log(seconds)
-  return String(( '00' + hour ).slice( -2 ))+" : "+String(( '00' + minitue ).slice( -2 ))+" : "+String(( '00' + seconds ).slice( -2 ))
+  return String(hour)+" : "+String(( '00' + minitue ).slice( -2 ))+" : "+String(( '00' + seconds ).slice( -2 ))
 }
 
 //時間を受け取り表示する
@@ -48,6 +48,9 @@ export default function App() {
       <h1>CountDownTimer</h1>
       <button onClick={monitorFlg}>
         開始
+      </button>
+      <button onClick={monitorFlg}>
+        停止
       </button>
       <h1>{flg}</h1>
       <Timer seconds={seconds}/>
