@@ -14,7 +14,7 @@ function TimeDivide(time : number){
   // console.log(hour)
   // console.log(minitue)
   // console.log(seconds)
-  return String(hour)+" : "+String(minitue)+" : "+String(seconds)
+  return String(( '00' + hour ).slice( -2 ))+" : "+String(( '00' + minitue ).slice( -2 ))+" : "+String(( '00' + seconds ).slice( -2 ))
 }
 
 //時間を受け取り表示する
