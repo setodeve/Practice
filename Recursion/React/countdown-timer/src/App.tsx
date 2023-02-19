@@ -9,7 +9,7 @@ type Props = {
 //秒数を時間/分数/秒数の三つで表示する
 function TimeDivide(time : number){
   const hour = Math.floor(time/60/60);
-  const minitue = Math.floor(time/60);
+  const minitue = Math.floor(time/60%60);
   const seconds = Math.floor(time%60);
   // console.log(hour)
   // console.log(minitue)
@@ -28,25 +28,28 @@ function Timer(props:Props){
 
 //Timerに時間を渡しを表示する
 export default function App() {
-  const [seconds, setSeconds] = useState(1000);
-
+  const [seconds, setSeconds] = useState(10000);
+  const [flg, setFlg] = useState(false);
+  const monitorFlg = () => {
+    setFlg(!flg);
+  }
+  
   useEffect(() => {
     const interval = setInterval(() => {
-      setSeconds(seconds => seconds - 1);
+      if(flg){
+        setSeconds(seconds => seconds - 1);
+      }
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
-
-  function secondDecrease() {
-    setSeconds(seconds-1);
-  }
+  }, [flg]);
 
   return (
     <div className="App">
       <h1>CountDownTimer</h1>
-      <button onClick={secondDecrease}>
+      <button onClick={monitorFlg}>
         開始
       </button>
+      <h1>{flg}</h1>
       <Timer seconds={seconds}/>
     </div>
   );
