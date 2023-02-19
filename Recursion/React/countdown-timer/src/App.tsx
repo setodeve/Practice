@@ -1,30 +1,53 @@
 import React from 'react';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type Props = {
-  hours:Number,
-  minitues:Number,
-  seconds:Number,
+  seconds:number,
 }
 
-//時間を受け取りカウントする
+//秒数を時間/分数/秒数の三つで表示する
+function TimeDivide(time : number){
+  const hour = Math.floor(time/60/60);
+  const minitue = Math.floor(time/60);
+  const seconds = Math.floor(time%60);
+  // console.log(hour)
+  // console.log(minitue)
+  // console.log(seconds)
+  return String(hour)+" : "+String(minitue)+" : "+String(seconds)
+}
+
+//時間を受け取り表示する
 function Timer(props:Props){
   return (
-    <div>Timer Component</div>
+    <div>
+      <h1>{TimeDivide(props.seconds)}</h1>
+    </div>
   );
 }
 
 //Timerに時間を渡しを表示する
 export default function App() {
-  const [hour, setHour] = useState(0);
-  const [minitue, setMinitue] = useState(0);
-  const [second, setSecond] = useState(0);
+  const [seconds, setSeconds] = useState(1000);
 
-  <Timer hours={1} minitues={20} seconds={30}/>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(seconds => seconds - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  function secondDecrease() {
+    setSeconds(seconds-1);
+  }
+
   return (
     <div className="App">
       <h1>CountDownTimer</h1>
+      <button onClick={secondDecrease}>
+        開始
+      </button>
+      <Timer seconds={seconds}/>
     </div>
   );
 }
