@@ -13,15 +13,12 @@ type Props = {
 
 
 function Form(){
-  
-  let customer_id = 0 ;
-
   const [formInput,setformInput] = useState(
     { name:"", num:0, table:0 }
   );
   
   const [lists,setLists] = useState<Props[]>([]);
-  
+  const [cnt,setCnt] = useState(0);
   const submitevent = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value} = e.target;
     setformInput({...formInput, [name]:value});
@@ -33,13 +30,26 @@ function Form(){
     setLists([
     ...lists,
     { 
-      id: customer_id++,
+      id: cnt,
       name: formInput.name,
       num: formInput.num,
       table: formInput.table,
       status: "waiting"
     }
     ]);
+    setCnt(cnt+1)
+    setformInput({name:"", num:0, table:0});
+  }
+
+  const chagestatus = (id:number|undefined,status:string) => {
+    let newLists = [...lists]
+    newLists.forEach(list=>{
+      if(list.id===id){
+        list.status = status ;
+      }
+      console.log(list);
+    });
+    setLists(newLists);
   }
 
   return(
@@ -75,11 +85,12 @@ function Form(){
         <div>
           <h3>順番待ち</h3>
           <ul>
-            {lists.filter(list => list.status==="waiting").map(list => (
+            {
+            lists.filter(list => list.status==="waiting").map(list => (
               <li value={list.id}>
                 {list.name}
-                <button>取り消し</button>
-                <button>案内</button>
+                <button onClick={() => chagestatus(list.id,"outside")}>取り消し</button>
+                <button onClick={() => chagestatus(list.id,"inside")}>案内</button>
               </li>
             ))}
           </ul>
@@ -90,7 +101,7 @@ function Form(){
             {lists.filter(list => list.status==="inside").map(list => (
               <li value={list.id}>
               {list.name}
-              <button>お会計(退店)</button>
+              <button onClick={() => chagestatus(list.id,"outside")}>お会計(退店)</button>
             </li>
             ))}
           </ul>
