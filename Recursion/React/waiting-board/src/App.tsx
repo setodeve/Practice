@@ -101,23 +101,6 @@ function Form(){
   );
 }
 
-function Inside(props:Props){
-  return(
-    <div>
-      <h3>店内</h3>
-
-    </div>
-  );
-}
-
-function Wait(props:Props){
-  return(
-    <div>
-      <h3>順番待ち</h3>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <div className="App">
