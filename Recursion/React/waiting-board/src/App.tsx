@@ -47,7 +47,6 @@ function Form(){
       if(list.id===id){
         list.status = status ;
       }
-      console.log(list);
     });
     setLists(newLists);
   }
@@ -87,7 +86,7 @@ function Form(){
           <ul>
             {
             lists.filter(list => list.status==="waiting").map(list => (
-              <li value={list.id}>
+              <li key={list.id}>
                 {list.name}
                 <button onClick={() => chagestatus(list.id,"outside")}>取り消し</button>
                 <button onClick={() => chagestatus(list.id,"inside")}>案内</button>
@@ -99,7 +98,7 @@ function Form(){
           <h3>店内</h3>
           <ul>
             {lists.filter(list => list.status==="inside").map(list => (
-              <li value={list.id}>
+              <li key={list.id}>
               {list.name}
               <button onClick={() => chagestatus(list.id,"outside")}>お会計(退店)</button>
             </li>
