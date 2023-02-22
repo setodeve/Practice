@@ -19,11 +19,11 @@ function Form(){
   
   const [lists,setLists] = useState<Props[]>([]);
   const [cnt,setCnt] = useState(0);
-  const submitevent = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const submitevent = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value} = e.target;
     setformInput({...formInput, [name]:value});
   }
-  
+  const tableList = ["テーブル","カウンター","どちらでも可"];
   const pushbutton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(formInput.name==="" || formInput.num===0 ) return ;
@@ -71,12 +71,18 @@ function Form(){
           />
         </label>
         <label>
-          <input 
-            type="text"
+          <select 
             name="table"
             value={formInput.table || ''}
             onChange={(e)=> submitevent(e)}
-          />
+          >
+            {
+              tableList.map((list,index)=>(
+                <option key={index} >{list}</option>
+              ))
+            }
+          
+          </select>
         </label>
         <button onClick={(e) => pushbutton(e)}>
           順番待ちする
@@ -88,6 +94,8 @@ function Form(){
             lists.filter(list => list.status==="waiting").map(list => (
               <li key={list.id}>
                 {list.name}
+                {list.num}
+                {list.table}
                 <button onClick={() => chagestatus(list.id,"outside")}>取り消し</button>
                 <button onClick={() => chagestatus(list.id,"inside")}>案内</button>
               </li>
@@ -99,7 +107,9 @@ function Form(){
           <ul>
             {lists.filter(list => list.status==="inside").map(list => (
               <li key={list.id}>
-              {list.name}
+                {list.name}
+                {list.num}
+                {list.table}
               <button onClick={() => chagestatus(list.id,"outside")}>お会計(退店)</button>
             </li>
             ))}
