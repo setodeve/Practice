@@ -2,14 +2,14 @@ import { useState } from 'react'
 import './root.css'
 import Category from '../component/category'
 
-type ProductList = {
+interface Product{
   id:number,
   tag:string,
   name:string,
   price:number
 }
 
-const products : ProductList[] = [
+const products : Product[] = [
   {id:1, tag:"Mac", name:"Macbook Air", price:115280},
   {id:2, tag:"Mac", name:"Macbook Pro 13inch", price:148280},
   {id:3, tag:"Mac", name:"Macbook Pro 14inch", price:239800},

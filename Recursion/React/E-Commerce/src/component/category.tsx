@@ -1,13 +1,18 @@
-import ProductList from "../type/type"
+import React from "react"
 
-type ProductList = {
+interface Product{
   id:number,
   tag:string,
   name:string,
   price:number
 }
 
-const Category = (props:ProductList) => {
+interface ProductList {
+  products: Array<Product>,
+  tag:string
+}
+
+const Category : React.FC<ProductList> = (props) => {
   const tag = props.tag
   const products = props.products
   return (
@@ -17,7 +22,7 @@ const Category = (props:ProductList) => {
         <h3>{props.tag}</h3>
         <ul>
           {
-            products.filter((product:ProductList) => product.tag===tag).map((product:ProductList)=>(
+            products.filter((product:Product) => product.tag===tag).map((product:Product)=>(
               <li key={product.id}>{product.name}</li>
             ))
           }
