@@ -1,5 +1,7 @@
 import React from "react"
-
+import "./category.css"
+import { AiFillHeart } from 'react-icons/ai/';
+import { BsCartPlusFill } from 'react-icons/bs/';
 interface Product{
   id:number,
   tag:string,
@@ -7,26 +9,36 @@ interface Product{
   price:number
 }
 
-interface ProductList {
+interface ProductList{
   products: Array<Product>,
-  tag:string
+  tag:string,
+  image:string
 }
 
 const Category : React.FC<ProductList> = (props) => {
   const tag = props.tag
   const products = props.products
+  const image = props.image
   return (
     <div>
-      <h2>Category Component</h2>
       <div>
-        <h3>{props.tag}</h3>
-        <ul>
+        <h2>Category Component</h2>
+        <div className="products">
+          <h3>{props.tag}</h3>
           {
             products.filter((product:Product) => product.tag===tag).map((product:Product)=>(
-              <li key={product.id}>{product.name}</li>
+              <div className="product" key={product.id}>
+                <img src={image} alt={tag} className="product_image" />
+                <h4>{product.name}</h4>
+                <div className="product_price">{product.price}円~</div>
+                <div className="icons">
+                  <span className="heart"><AiFillHeart/></span>
+                  <span className="cart"><BsCartPlusFill/></span>
+                </div>
+              </div>
             ))
           }
-        </ul>
+        </div>
       </div>
     </div>
   )

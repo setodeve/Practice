@@ -1,0 +1,28 @@
+.products{
+  float: left;
+  border: solid;
+  text-align:left;
+}
+
+.product{
+  text-align:center;
+  border: solid;
+  float: left;
+  width:200px;
+  height:250px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.product_image{
+  width:120px;
+  height:100px;
+}
+
+.product_price{
+  text-align:right;
+}
+
+.icons{
+  text-align:right;
+}

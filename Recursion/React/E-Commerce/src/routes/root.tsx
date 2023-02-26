@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './root.css'
 import Category from '../component/category'
+import phone from '../assets/phone.jpg'
+import laptop from '../assets/laptop.jpg'
+
 
 interface Product{
   id:number,
@@ -21,11 +24,8 @@ const products : Product[] = [
 const Root = () => {
   return (
     <div className="Root">
-      <h1>Electric Commerce</h1>
-      <div>
-        <Category products={products} tag="Mac"/>
-        <Category products={products} tag="iPhone"/>
-      </div>
+      <Category products={products} tag="Mac" image={laptop}/>
+      <Category products={products} tag="iPhone" image={phone}/>
     </div>
   )
 }
