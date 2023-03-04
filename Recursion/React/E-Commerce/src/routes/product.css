@@ -1,0 +1,30 @@
+.produc_menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left_menu{
+  height: 300px;
+  width: 200x;
+}
+
+.right_menu{
+  height: 300px;
+  width: 100x;
+}
+
+.product_image{
+  width:300px;
+  height:200px;
+}
+
+.contents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.produc_detail{
+  border: solid;
+  margin-top:19px;
+}

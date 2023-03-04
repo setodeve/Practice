@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root"
+import ProductComponent from "./routes/product"
 import { BsFillCartFill } from 'react-icons/bs/';
 import { HiUser } from 'react-icons/hi/';
+import { loader } from './routes/root';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,8 @@ const router = createBrowserRouter([
   },
   {
     path: "products/:productId",
-    element: <div>Products details</div>
+    element: <ProductComponent/>,
+    loader: loader
   },
   {
     path: "carts",
@@ -28,14 +31,19 @@ const router = createBrowserRouter([
   },
 ]);
 
+export const StoreData = () => {
+  const [carts,setCarts] = useState([]);
+  const [favorites,setFavorites] = useState([]);
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <div>
       <h1>Electric Commerce</h1>
-      <span className="icons">
+      <div className="icons">
         <span className="cart"><BsFillCartFill/></span>
         <span className="user"><HiUser/></span>
-      </span>
+      </div>
     </div>
     <RouterProvider router={router} />
   </React.StrictMode>,
