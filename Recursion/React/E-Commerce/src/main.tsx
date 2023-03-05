@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -10,6 +10,7 @@ import ProductComponent from "./routes/product"
 import { BsFillCartFill } from 'react-icons/bs/';
 import { HiUser } from 'react-icons/hi/';
 import { loader } from './routes/root';
+import { UserInfoProvider } from './data'
 
 const router = createBrowserRouter([
   {
@@ -31,11 +32,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const StoreData = () => {
-  const [carts,setCarts] = useState([]);
-  const [favorites,setFavorites] = useState([]);
-}
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <div>
@@ -45,6 +41,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <span className="user"><HiUser/></span>
       </div>
     </div>
-    <RouterProvider router={router} />
+    <UserInfoProvider>
+      <RouterProvider router={router} />
+    </UserInfoProvider>
   </React.StrictMode>,
 )

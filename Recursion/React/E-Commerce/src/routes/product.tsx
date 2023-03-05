@@ -1,8 +1,10 @@
 // import GetProducts from '../data'
 import { useLoaderData,useParams } from "react-router-dom"
+import { UserInfoContext } from "../data"
 import { AiFillHeart } from 'react-icons/ai/';
 import { BsCartPlusFill } from 'react-icons/bs/';
 import "./product.css"
+import { useContext } from "react";
 
 interface Product{
   id:number,
@@ -14,6 +16,8 @@ interface Product{
 const ProductComponent = () => {
   const loaderData = useLoaderData();
   const paramsData  = useParams();
+  const userinfo = useContext(UserInfoContext);
+  // console.log(cart)
   // console.log(loaderData.products)
   // console.log(paramsData.productId)
   // console.log(productId)

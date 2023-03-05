@@ -1,8 +1,6 @@
 import './root.css'
 import Category from '../component/category'
-import GetProducts from '../data'
-
-
+import { GetProducts } from '../data'
 
 export const loader = async () => {
   const products = await GetProducts();
