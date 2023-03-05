@@ -6,7 +6,7 @@ interface Product{
   id:number,
   tag:string,
   name:string,
-  price:number
+  price:number,
   image:string
 }
 
@@ -19,11 +19,6 @@ export const UserInfoProvider = (props:any) => {
       {props.children}
     </UserInfoContext.Provider>
   )
-}
-
-export const StoreData = () => {
-  const [carts,setCarts] = useState([]);
-  const [favorites,setFavorites] = useState([]);
 }
 
 export const GetProducts = () => {

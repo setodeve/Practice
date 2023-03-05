@@ -1,6 +1,6 @@
 // import GetProducts from '../data'
-import { useLoaderData,useParams } from "react-router-dom"
-import { UserInfoContext } from "../data"
+import { useParams } from "react-router-dom"
+import { UserInfoContext,GetProducts } from "../data"
 import { AiFillHeart } from 'react-icons/ai/';
 import { BsCartPlusFill } from 'react-icons/bs/';
 import "./product.css"
@@ -14,19 +14,16 @@ interface Product{
 }
 
 const ProductComponent = () => {
-  const loaderData = useLoaderData();
+  const products = GetProducts();
   const paramsData  = useParams();
   const userinfo = useContext(UserInfoContext);
-  // console.log(cart)
-  // console.log(loaderData.products)
-  // console.log(paramsData.productId)
-  // console.log(productId)
-  const product = loaderData.products.filter((product:Product) => product.id == paramsData.productId)
-  // console.log(product)
+
+  const product = products.filter((product:Product) => product.id == Number(paramsData.productId))
+
   return (
     <div className="product_menu">
       <div className="left_menu">
-        <img src={"../"+product[0].image} alt={product.name} className="product_image"/>
+        <img src={"../"+product[0].image} alt={product[0].name} className="product_image"/>
         <div className="contents">
           <div><h3>{product[0].name}</h3></div>
           <div><h4>{product[0].price}円</h4></div>
