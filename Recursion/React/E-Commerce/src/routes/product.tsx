@@ -1,10 +1,9 @@
-// import GetProducts from '../data'
 import { useParams } from "react-router-dom"
+import { useContext } from "react";
 import { UserInfoContext,GetProducts } from "../data"
 import { AiFillHeart } from 'react-icons/ai/';
 import { BsCartPlusFill } from 'react-icons/bs/';
 import "./product.css"
-import { useContext } from "react";
 
 interface Product{
   id:number,
@@ -16,8 +15,9 @@ interface Product{
 const ProductComponent = () => {
   const products = GetProducts();
   const paramsData  = useParams();
-  const userinfo = useContext(UserInfoContext);
+  const { userInfo, setUserInfo } = useContext(UserInfoContext);
 
+  // console.log(userInfo)
   const product = products.filter((product:Product) => product.id == Number(paramsData.productId))
 
   return (

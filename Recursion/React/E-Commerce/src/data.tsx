@@ -10,6 +10,10 @@ interface Product{
   image:string
 }
 
+interface UserInfo{
+  cart:number,
+  favorite:number,
+}
 
 export const UserInfoContext = createContext({});
 export const UserInfoProvider = (props:any) => {
