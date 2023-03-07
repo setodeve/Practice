@@ -17,7 +17,21 @@ const ProductComponent = () => {
   const paramsData  = useParams();
   const { userInfo, setUserInfo } = useContext(UserInfoContext);
 
-  console.log(userInfo)
+  const setCartData = (id:number) => {
+    let cartinfo = userInfo.cart 
+    cartinfo.push(id)
+    setUserInfo({cart : cartinfo, favorite : userInfo.favorite})
+    console.log(userInfo)
+  }
+
+  const setFavoriteData = (id:number) => {
+    let favoriteinfo = userInfo.favorite
+    favoriteinfo.push(id)
+    setUserInfo({cart : userInfo.cart, favorite : favoriteinfo})
+    console.log(userInfo)
+  }
+
+  // console.log(userInfo)
   // setUserInfo({cart:[1],favorite:[2]})
   // console.log(userInfo)
   const product = products.filter((product:Product) => product.id == Number(paramsData.productId))
@@ -36,8 +50,8 @@ const ProductComponent = () => {
           </div>
         </div>
         <div className="icons">
-          <span className="heart"><AiFillHeart/></span>
-          <span className="cart"><BsCartPlusFill/></span>
+          <span onClick={() => setFavoriteData(product[0].id)} className="heart"><AiFillHeart/></span>
+          <span onClick={() => setCartData(product[0].id)} className="cart"><BsCartPlusFill/></span>
         </div>
       </div>
       <div className="right_menu">
