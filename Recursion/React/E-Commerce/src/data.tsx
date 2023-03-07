@@ -17,7 +17,7 @@ interface UserInfo{
 
 export const UserInfoContext = createContext({});
 export const UserInfoProvider = (props:any) => {
-  const [userInfo,setUserInfo] = useState([{cart:[],favorite:[]}]);
+  const [userInfo,setUserInfo] = useState({cart:[],favorite:[]});
   return(
     <UserInfoContext.Provider value={{userInfo,setUserInfo}} >
       {props.children}

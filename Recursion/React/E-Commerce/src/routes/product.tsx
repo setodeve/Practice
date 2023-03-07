@@ -17,6 +17,8 @@ const ProductComponent = () => {
   const paramsData  = useParams();
   const { userInfo, setUserInfo } = useContext(UserInfoContext);
 
+  console.log(userInfo)
+  // setUserInfo({cart:[1],favorite:[2]})
   // console.log(userInfo)
   const product = products.filter((product:Product) => product.id == Number(paramsData.productId))
 
