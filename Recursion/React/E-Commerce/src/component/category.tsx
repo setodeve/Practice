@@ -26,14 +26,12 @@ const Category : React.FC<ProductList> = (props) => {
     let cartinfo = userInfo.cart 
     cartinfo.push(id)
     setUserInfo({cart : cartinfo, favorite : userInfo.favorite})
-    console.log(userInfo)
   }
 
   const setFavoriteData = (id:number) => {
     let favoriteinfo = userInfo.favorite
     favoriteinfo.push(id)
     setUserInfo({cart : userInfo.cart, favorite : favoriteinfo})
-    console.log(userInfo)
   }
 
   return (
