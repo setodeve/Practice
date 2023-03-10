@@ -75,3 +75,11 @@ ul{
 li{
   list-style:none;
 }
+
+.app-title{
+  color: white;
+}
+
+.cart{
+  color: white;
+}

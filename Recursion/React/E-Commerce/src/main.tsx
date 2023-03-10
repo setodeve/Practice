@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
   RouterProvider,
+  Link, 
+  BrowserRouter as Router, 
+  Routes,
+  Route
 } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root"
 import ProductComponent from "./routes/product"
+import CartComponent from "./routes/cart"
 import { BsFillCartFill } from 'react-icons/bs/';
 import { HiUser } from 'react-icons/hi/';
-import { loader } from './routes/root';
 import { UserInfoProvider } from './data'
 
 const router = createBrowserRouter([
@@ -23,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "carts",
-    element: <div>Carts</div>
+    element: <CartComponent />
   },
   {
     path: "favorites",
@@ -33,15 +37,17 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <div>
-      <h1>Electric Commerce</h1>
-      <div className="icons">
-        <span className="cart"><BsFillCartFill/></span>
-        <span className="user"><HiUser/></span>
-      </div>
-    </div>
     <UserInfoProvider>
+      <Router>
+        <a href='/'><h1 className='app-title'>Electric Commerce</h1></a>
+        <div className="icons">
+          <a href='/carts'>
+            <span className="cart"><BsFillCartFill/></span>
+          </a>
+          <span className="user"><HiUser/></span>
+        </div>
+      </Router>
       <RouterProvider router={router} />
     </UserInfoProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
