@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserInfoContext,GetProducts } from "../data"
 import { AiFillHeart } from 'react-icons/ai/';
 import { BsCartPlusFill } from 'react-icons/bs/';
+import { Link } from "react-router-dom";
 import "./product.css"
 
 interface Product{
@@ -18,8 +19,12 @@ const ProductComponent = () => {
   const { userInfo, setUserInfo } = useContext(UserInfoContext);
 
   const setCartData = (id:number) => {
-    let cartinfo = userInfo.cart 
-    cartinfo.push(id)
+    let cartinfo = [...userInfo.cart]
+    if(cartinfo[id]==undefined){
+      cartinfo[id] = 1;
+    }else{
+      cartinfo[id] += 1;
+    }
     setUserInfo({cart : cartinfo, favorite : userInfo.favorite})
   }
 
@@ -70,8 +75,8 @@ const ProductComponent = () => {
           </div>
         </div>
         <button>Add Favorite</button>
-        <button>Add Cart</button>
-        <button>Add Cart Page</button>
+        <button onClick={() => setCartData(product[0].id)}>Add Cart</button>
+        <Link to={`/carts`}><button>Add Cart Page</button></Link>
       </div>
     </div>
   )
