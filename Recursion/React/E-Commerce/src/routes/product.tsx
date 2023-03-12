@@ -29,9 +29,11 @@ const ProductComponent = () => {
   }
 
   const setFavoriteData = (id:number) => {
-    let favoriteinfo = userInfo.favorite
-    favoriteinfo.push(id)
-    setUserInfo({cart : userInfo.cart, favorite : favoriteinfo})
+    let favoriteinfo = [...userInfo.favorite]
+    if(!favoriteinfo.includes(id)){
+      favoriteinfo.push(id)
+      setUserInfo({cart : userInfo.cart, favorite : favoriteinfo})
+    }
   }
 
   const product = products.filter((product:Product) => product.id == Number(paramsData.productId))
@@ -74,9 +76,9 @@ const ProductComponent = () => {
             <h5>~~~円</h5>
           </div>
         </div>
-        <button>Add Favorite</button>
+        <button onClick={() => setFavoriteData(product[0].id)}>Add Favorite</button>
         <button onClick={() => setCartData(product[0].id)}>Add Cart</button>
-        <Link to={`/carts`}><button>Add Cart Page</button></Link>
+        <Link to={`/carts`}><button>Move Cart Page</button></Link>
       </div>
     </div>
   )

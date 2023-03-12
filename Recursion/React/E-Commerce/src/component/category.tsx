@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import "./category.css"
 import { AiFillHeart } from 'react-icons/ai/';
-import { BsCartPlusFill,BsFillCartFill } from 'react-icons/bs/';
+import { BsCartPlusFill } from 'react-icons/bs/';
 import { Link } from "react-router-dom";
 import { UserInfoContext } from "../data"
 interface Product{
@@ -21,23 +21,24 @@ const Category : React.FC<ProductList> = (props) => {
   const tag = props.tag
   const products = props.products
   const { userInfo, setUserInfo } = useContext(UserInfoContext);
-  
+
+
   const setCartData = (id:number) => {
     let cartinfo = [...userInfo.cart]
-    if(Object.keys(cartinfo).includes(String(id))){
-      cartinfo[id] += 1;
-    }else{
+    if(cartinfo[id]==undefined){
       cartinfo[id] = 1;
+    }else{
+      cartinfo[id] += 1;
     }
-    // cartinfo.push(id)
-    setUserInfo({cart : cartinfo, favorite : [...userInfo.favorite]})
-    // console.log(userInfo)
+    setUserInfo({cart : cartinfo, favorite : userInfo.favorite})
   }
 
   const setFavoriteData = (id:number) => {
     let favoriteinfo = [...userInfo.favorite]
-    favoriteinfo.push(id)
-    setUserInfo({cart : [...userInfo.cart], favorite : favoriteinfo})
+    if(!favoriteinfo.includes(id)){
+      favoriteinfo.push(id)
+      setUserInfo({cart : userInfo.cart, favorite : favoriteinfo})
+    }
   }
 
   return (

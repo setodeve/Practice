@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { UserInfoContext,GetProducts } from "../data"
-import { Link } from "react-router-dom";
 interface Product{
   id:number,
   tag:string,
@@ -9,8 +8,6 @@ interface Product{
 }
 
 const CartComponent = () => {
-
-
   const setCartProductData = (cart:number[],products:Product[]) => {
     let cartproduct : Array<Product> = [];
     for(let i=1;i<cart.length;i++){
