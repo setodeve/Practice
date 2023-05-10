@@ -1,3 +1,5 @@
+import shutil
+
 def reverse(inputpath,outputpath):
   file = open(inputpath,'r')
   fileb = open(outputpath,'w')
@@ -7,3 +9,7 @@ def reverse(inputpath,outputpath):
 
 # reverse("./input/test.txt","./output/test.txt")
 
+def copy(inputpath,outputpath):
+  shutil.copyfile(inputpath, outputpath)
+
+# copy("./input/test.txt","./output/test.txt")
