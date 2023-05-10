@@ -13,3 +13,15 @@ def copy(inputpath,outputpath):
   shutil.copyfile(inputpath, outputpath)
 
 # copy("./input/test.txt","./output/test.txt")
+
+def duplicatecontents(inputpath,n):
+  file = open(inputpath,'r')
+  data = file.read()
+  file.close()
+  file = open(inputpath,'a')
+  if(n!=0):
+    for i in range(n):
+      file.write(data)
+  file.close()
+
+# duplicatecontents("./input/test.txt",2)
