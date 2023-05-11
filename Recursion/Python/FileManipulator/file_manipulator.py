@@ -25,3 +25,12 @@ def duplicatecontents(inputpath,n):
   file.close()
 
 # duplicatecontents("./input/test.txt",2)
+
+def replacestring(inputpath,oldstring,newstring):
+  filedata = open(inputpath,'r').read()
+  open(inputpath, 'w').close()
+  file = open(inputpath,'w')
+  file.write(filedata.replace(oldstring,newstring))
+  file.close()
+
+# replacestring("./input/test.txt","test","new")
