@@ -11,5 +11,4 @@ class InetSetting:
         sock.bind(self.address)
 
     def address_unlink(self):
-        sock = self.sock
         os.unlink(self.address)
