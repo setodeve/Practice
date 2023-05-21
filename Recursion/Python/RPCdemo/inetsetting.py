@@ -9,6 +9,10 @@ class InetSetting:
     def address_bind(self):
         sock = self.sock
         sock.bind(self.address)
+        print('starting up on {}'.format(self.address))
 
     def address_unlink(self):
-        os.unlink(self.address)
+        try:
+            os.unlink(self.address)
+        except FileNotFoundError:
+            pass
