@@ -16,7 +16,7 @@ class Client(InetSetting):
       message = self.data
       sock = self.sock
       server_address = self.server_address
-
+      
       try:
         print('sending {!r}'.format(message))
         sent = sock.sendto(json.dumps(message).encode(), server_address)
