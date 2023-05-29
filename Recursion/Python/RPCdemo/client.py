@@ -19,14 +19,14 @@ class Client(InetSetting):
         #   "method": "reverse",
         #   "params": "string"
         # }
-        # self.data = {
-        #   "method": "valid",
-        #   "params": {"str1": "abc","str2": "cba"}
-        # }
         self.data = {
-          "method": "sort",
-          "params": ["c","b","a"]
+          "method": "valid",
+          "params": {"str1": "abc","str2": "cba"}
         }
+        # self.data = {
+        #   "method": "sort",
+        #   "params": ["c","b","a"]
+        # }
     def data_receive(self):
       message = self.data
       sock = self.sock
