@@ -12,12 +12,29 @@ class Server(InetSetting):
           "results":int(math.floor(num)),
           "type":"int"
        }
-       print(data)
        return json.dumps(data).encode()
     
+    def nroot_number(self,num,time):
+      data = {
+         "results":num**time,
+         "type":"int"
+      }
+      return json.dumps(data).encode()
+
+    def reverse_string(self,str):
+      data = {
+         "results":str[::-1],
+         "type":"string"
+      }
+      return json.dumps(data).encode()
+
     def select_methods(self,method,params):
        if method=="floor":
           return self.floor_number(params)
+       elif method=="nroot":
+          return self.nroot_number(params["num"],params["time"])
+       elif method=="reverse":
+          return self.reverse_string(params)
        else:
           return json.dumps({}).encode()
 

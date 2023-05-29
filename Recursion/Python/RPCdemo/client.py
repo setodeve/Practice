@@ -7,11 +7,18 @@ class Client(InetSetting):
     def __init__(self) -> None:
         super().__init__('127.0.0.2')
         self.server_address = '127.0.0.3'
+        # self.data = {
+        #   "method": "floor",
+        #   "params": 1.5
+        # }
+        # self.data = {
+        #   "method": "nroot",
+        #   "params": {"num":3,"time":2}
+        # }
         self.data = {
-          "method": "floor",
-          "params": 1.5
+          "method": "reverse",
+          "params": "string"
         }
-
     def data_receive(self):
       message = self.data
       sock = self.sock
