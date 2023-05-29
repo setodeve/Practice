@@ -15,9 +15,17 @@ class Client(InetSetting):
         #   "method": "nroot",
         #   "params": {"num":3,"time":2}
         # }
+        # self.data = {
+        #   "method": "reverse",
+        #   "params": "string"
+        # }
+        # self.data = {
+        #   "method": "valid",
+        #   "params": {"str1": "abc","str2": "cba"}
+        # }
         self.data = {
-          "method": "reverse",
-          "params": "string"
+          "method": "sort",
+          "params": ["c","b","a"]
         }
     def data_receive(self):
       message = self.data

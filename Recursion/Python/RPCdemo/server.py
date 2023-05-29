@@ -27,7 +27,30 @@ class Server(InetSetting):
          "type":"string"
       }
       return json.dumps(data).encode()
-
+    
+   #  def validAnagram_string(self,str1,str2):
+   #    data = {
+   #       "results":False,
+   #       "type":"Bool"
+   #    }
+   #    if(len(str1)!=len(str2)):
+   #       print("")
+   #    else:
+   #       for i in range(int(len(str1)/2)+1):
+   #          if(str1[i]!=str2[len(str2)-i]):
+   #             data["results"] = False
+   #             break
+   #          else:
+   #             data["results"] = True
+   #    return json.dumps(data).encode()
+    def sort_arr(self,arr):
+      arr.reverse()
+      data = {
+         "results":arr,
+         "type":"string"
+      }
+      return json.dumps(data).encode()
+    
     def select_methods(self,method,params):
        if method=="floor":
           return self.floor_number(params)
@@ -35,6 +58,10 @@ class Server(InetSetting):
           return self.nroot_number(params["num"],params["time"])
        elif method=="reverse":
           return self.reverse_string(params)
+       elif method=="sort":
+          return self.sort_arr(params)
+      #  elif method=="valid":
+      #     return self.validAnagram_string(params["str1"],params["str2"])
        else:
           return json.dumps({}).encode()
 
