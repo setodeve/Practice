@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 const postDirectory = path.join(process.cwd(),'posts')
 
 export function getSortedPostData() {
-  const fileNames = fs.readFileSync(postDirectory);
+  const fileNames = fs.readdirSync(postDirectory);
   const allPostsData = fileNames.map((fileName)=>{
     const id = fileName.replace(/\.md$/,'');
 
