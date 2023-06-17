@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html'
 
 const postDirectory = path.join(process.cwd(),'posts')
 
@@ -40,13 +42,18 @@ export function getAllPostIds() {
   })
 }
 
-export function getPostData(id) {
+export async function getPostData(id) {
   const fullPath = path.join(postDirectory, `${id}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
+  const contetHtml = processedContent.toString();
 
   return {
     id,
+    contetHtml,
     ...matterResult.data
   }
 }
