@@ -10,7 +10,7 @@ export const testState = atom({
   }
 })
 
-// export const githubState = atom({
-//   key: "gitState",
-//   default: `${process.env.GITHUB_TOKEN}`
-// })
+export const githubState = atom({
+  key: "gitState",
+  default: `${process.env.GITHUB_TOKEN}`
+})
