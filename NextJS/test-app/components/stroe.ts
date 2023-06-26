@@ -1,6 +1,6 @@
 "use client"
 import { atom } from "recoil";
-import 'dotenv/config'
+// import 'dotenv/config'
 
 export const testState = atom({
   key: "textState",
@@ -10,10 +10,7 @@ export const testState = atom({
   }
 })
 
-export const githubState = atom({
-  key: "gitState",
-  default: {
-    token:process.env.GITHUB_TOKEN,
-    url:process.env.GITHUB_BASEURL
-  }
-})
+// export const githubState = atom({
+//   key: "gitState",
+//   default: `${process.env.GITHUB_TOKEN}`
+// })
