@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps<{
   return { props: { repo } }
 }
  
-export default function Test({
+export default function List({
   repo,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   // console.log(repo)
