@@ -9,7 +9,7 @@ type Repo = {
 export const getStaticProps: GetStaticProps<{
   repo: Repo
 }> = async () => {
-  const res = await fetch('https://api.github.com/search/code?q=anycloud',{
+  const res = await fetch('https://api.github.com/search/repositories?q=anycloud',{
     method: 'GET',
     headers:{
       "Accept": "application/vnd.github+json",
@@ -24,6 +24,20 @@ export const getStaticProps: GetStaticProps<{
 export default function List({
   repo,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // console.log(repo)
-  return <div>index</div>
+  console.log(repo)
+  const items = repo.items
+  return (
+    <>
+      <ul>
+        {/* {items.map(({item}) => (
+            <li>{item}<li/>
+        ))} */}
+          {items.map(({id,name}) => (
+            <li key={id}>
+              {name}
+            </li>
+          ))}
+      </ul>
+    </>
+  );
 }
