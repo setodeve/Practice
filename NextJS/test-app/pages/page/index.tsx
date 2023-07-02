@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from 'next/image'
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -19,12 +20,12 @@ export default function Home() {
       )}
       {session && (
         <>
-          name:{session.user.name} <br />
-          image:
-          <img
+          {session.user.name} <br />
+          <Image
             src={session.user.image}
             alt="icon"
-            style={{ width: "100px", height: "100px" }}
+            width= {80}
+            height= {80}
           />
           <br />
           <button onClick={() => signOut()}>Sign out</button>
