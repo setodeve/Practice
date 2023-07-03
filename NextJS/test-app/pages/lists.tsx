@@ -1,7 +1,7 @@
-import type { InferGetStaticPropsType, GetStaticProps } from 'next'
-import 'dotenv/config'
+// import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+// import 'dotenv/config'
 import Search from '@/components/search'
-import { searchwordState } from '@/components/stroe'
+import List  from '@/components/list'
 // type Repo = {
 //   name: string
 //   stargazers_count: number
@@ -22,31 +22,11 @@ import { searchwordState } from '@/components/stroe'
 //   return { props: { repo } }
 // }
  
-export default function List(){
-  // console.log(repo)
-  // const items = repo.items
+export default function Lists(){
   return (
     <>
-      <Search></Search>
+      <Search/>
+      <List/>
     </>
   );
 }
-
-// export default function List({
-//   repo,
-// }: InferGetStaticPropsType<typeof getStaticProps>) {
-//   console.log(repo)
-//   const items = repo.items
-//   return (
-//     <>
-//       <></>
-//       <ul>
-//           {items.map(({id,name}) => (
-//             <li key={id}>
-//               {name}
-//             </li>
-//           ))}
-//       </ul>
-//     </>
-//   );
-// }

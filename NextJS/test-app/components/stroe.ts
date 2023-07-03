@@ -11,5 +11,5 @@ export const testState = atom({
 
 export const searchwordState = atom({
   key: "searchwordState",
-  default: ""
+  default: []
 })

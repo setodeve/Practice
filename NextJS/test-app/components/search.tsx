@@ -1,7 +1,6 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { searchwordState } from '@/components/stroe'
 import { FormEvent } from 'react'
-import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 import 'dotenv/config'
 
 export default function Search(){
@@ -17,7 +16,7 @@ export default function Search(){
       }
     })
     const repo = await res.json()
-    setSearchword(repo)
+    setSearchword(repo.items)
   }
   return (
     <form onSubmit={handleSubmit}>
