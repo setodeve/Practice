@@ -1,6 +1,5 @@
 "use client"
 import { atom } from "recoil";
-// import 'dotenv/config'
 
 export const testState = atom({
   key: "textState",
@@ -10,7 +9,7 @@ export const testState = atom({
   }
 })
 
-export const githubState = atom({
-  key: "gitState",
-  default: `${process.env.GITHUB_TOKEN}`
+export const searchwordState = atom({
+  key: "searchwordState",
+  default: ""
 })
