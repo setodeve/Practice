@@ -6,7 +6,7 @@ export default function List(){
   return(
     <>
       <h1>list</h1>
-      {searchword.length < 0 || searchword==undefined ? (
+      {searchword.length < 0 || searchword==undefined || searchword==null ? (
         <h1>No result</h1>
       ):(
         <ul>

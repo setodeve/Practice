@@ -1,10 +1,12 @@
 "use client"
-import 'dotenv/config'
-
-export default function Home() {
+import Search from '@/components/search'
+import List  from '@/components/list'
+ 
+export default function Home(){
   return (
-    <main>
-      <div>Home</div>
-    </main>
-  )
+    <>
+      <Search/>
+      <List/>
+    </>
+  );
 }
