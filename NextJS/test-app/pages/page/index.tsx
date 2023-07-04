@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 
-export default function Home() {
+export default function index() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
   return (
