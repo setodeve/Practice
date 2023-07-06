@@ -19,9 +19,9 @@ export default function Search(){
     setSearchword(repo.items)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" id="word" name="word" placeholder='word for repository search' required />
-      <button type="submit">Submit</button>
+    <form className='p-2' onSubmit={handleSubmit}>
+      <input type="text" id="word" name="word" required />
+      <button className='p-1 ext-sm font-semibold leading-6' type="submit">Submit</button>
     </form>
   )
 }

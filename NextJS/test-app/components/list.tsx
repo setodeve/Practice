@@ -5,18 +5,22 @@ export default function List(){
   const searchword = useRecoilValue(searchwordState)
   return(
     <>
-      <h1>list</h1>
-      {searchword.length < 0 || searchword==undefined || searchword==null ? (
-        <h1>No result</h1>
-      ):(
-        <ul>
-          {searchword.map(({id,name}) => (
-            <li key={id}>
-              {name}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className='p-2'>
+        {searchword.length === 0 ? (
+            <h1 className='ext-sm font-semibold leading-6'>No result</h1>
+        ):(
+          <div>
+            <h1>Search results</h1>
+            <ul>
+              {searchword.map(({id,name}) => (
+                <li className='ext-sm font-semibold leading-6' key={id}>
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </>
   );
 }
