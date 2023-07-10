@@ -1,7 +1,10 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
+import { useRecoilState } from 'recoil'
+import { userInfoState } from '@/components/stroe'
 
 export default function Head(){
+  const [userInfo,setUserInfo] = useRecoilState(userInfoState)
   const { data: session, status } = useSession();
   const loading = status === "loading";
   return (
