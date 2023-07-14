@@ -12,3 +12,10 @@ export const userInfoState = atom({
 
   }
 })
+
+export const userRepoState = atom({
+  key: "userRepoState",
+  default: {
+
+  }
+})
