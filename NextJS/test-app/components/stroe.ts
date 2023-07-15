@@ -13,6 +13,13 @@ export const userInfoState = atom({
   }
 })
 
+export const userSessionState = atom({
+  key: "userSessionState",
+  default: {
+
+  }
+})
+
 export const userRepoState = atom({
   key: "userRepoState",
   default: {
