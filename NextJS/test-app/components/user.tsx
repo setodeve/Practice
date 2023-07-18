@@ -15,7 +15,6 @@ export default async function User(data:any){
 
   if(data&& Object.keys(userRepo).length==0&& Object.keys(userInfo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))
   if(data&& Object.keys(userInfo).length==0) setUserInfo(await getData(data.name))
-  console.log(userRepo)
 
   return (
    <>
