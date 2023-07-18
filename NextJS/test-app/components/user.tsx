@@ -1,10 +1,8 @@
-import { userInfoState,userRepoState,userSessionState } from '@/components/stroe'
-
-export default function User(){
+export default function User(data:any){
   return (
    <>
     <div>
-      user page
+      <h1>{data.name}</h1>
     </div>
    </>  
   )
