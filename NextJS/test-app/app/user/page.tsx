@@ -6,7 +6,7 @@ import { useParams,useSearchParams } from 'next/navigation'
 export default function Page() {
   const searchParams = useSearchParams()
   const params = searchParams.get('name')
-  console.log(searchParams)
+  // console.log(searchParams)
   return (
     <>
       <Head/>
