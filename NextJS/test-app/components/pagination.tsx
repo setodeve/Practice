@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useRecoilState } from 'recoil'
-import { searchwordState } from '@/components/stroe'
+import { searchresultState } from '@/components/stroe'
 export default function Pagination({ totalCount }:number){
-  const [searchword,setSearchword] = useRecoilState(searchwordState)
+  const [searchresult,setSearchresult] = useRecoilState(searchresultState)
   const PER_PAGE = 5;
 
   const range = (start :number, end :number) =>
