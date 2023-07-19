@@ -1,4 +1,4 @@
-import { userInfoState,userRepoState,userSessionState } from '@/components/stroe'
+import { userInfoState,userRepoState } from '@/components/stroe'
 import { useRecoilState } from 'recoil'
 
 async function getData(name:string){
