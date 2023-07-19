@@ -1,3 +1,3 @@
-export default function Page(data:any[]){
+export default function Repos(data:any[]){
 
 }
