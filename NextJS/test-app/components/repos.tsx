@@ -9,10 +9,10 @@ async function getData(name:string){
               })
 }
 
-export default function Repos(data:any[]){
+export default async function Repos(data:any){
   const [userRepo,setUserRepo] = useRecoilState(userRepoState)
-
-  if(data&& Object.keys(userRepo).length==0&& Object.keys(userInfo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))
+  
+  if(data&& Object.keys(userRepo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))
 
   return (
    <>
