@@ -1,15 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import Link from 'next/link'
-// import { useRecoilState } from 'recoil'
-// import { useEffect } from 'react'
-// import { userInfoState,userRepoState,userSessionState } from '@/components/stroe'
-// import { getUserData } from './lib'
-
-// async function getData(){
-//   const res = await fetch("https://api.github.com/users/setokei")
-//   return res.json()
-// }
 
 export default function Head() {
   // const [userInfo,setUserInfo] = useRecoilState(userInfoState)
