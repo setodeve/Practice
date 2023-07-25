@@ -1,4 +1,4 @@
-import { userInfoState,userRepoState } from '@/components/stroe'
+import { userInfoState, userRepoState, currentPageState } from '@/components/stroe'
 import { useRecoilState } from 'recoil'
 import Repos from "@/components/repos"
 import Pagination from './pagination'
@@ -14,6 +14,11 @@ async function getData(name:string){
 export default async function User(data:any){
   const [userInfo,setUserInfo] = useRecoilState(userInfoState)
   const [userRepo,setUserRepo] = useRecoilState(userRepoState)
+  const [currentPage,setCurrentPage] = useRecoilState(currentPageState)
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  }; 
 
   if(data&& Object.keys(userRepo).length==0&& Object.keys(userInfo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))
   if(data&& Object.keys(userInfo).length==0) setUserInfo(await getData(data.name))
@@ -35,12 +40,12 @@ export default async function User(data:any){
           ):(
             <>
               <Repos data={userRepo}/>
-              {/* <Pagination
-                  items={data.length} // 100
+              <Pagination
+                  items={userRepo.length} // 100
                   currentPage={currentPage} // 1
-                  pageSize={pageSize} // 10
+                  pageSize={5} // 10
                   onPageChange={onPageChange}
-                  /> */}
+              />
             </>
           )}
       </>
