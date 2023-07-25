@@ -35,6 +35,12 @@ export default async function User(data:any){
           ):(
             <>
               <Repos data={userRepo}/>
+              {/* <Pagination
+                  items={data.length} // 100
+                  currentPage={currentPage} // 1
+                  pageSize={pageSize} // 10
+                  onPageChange={onPageChange}
+                  /> */}
             </>
           )}
       </>
