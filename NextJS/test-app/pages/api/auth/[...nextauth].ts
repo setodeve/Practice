@@ -19,7 +19,12 @@ export default NextAuth({
 
   pages: {},
 
-  callbacks: {},
+  callbacks: {
+    async session({ session, user }) {
+      console.log(session)
+      return session;
+    },
+  },
 
   events: {},
 
