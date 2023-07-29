@@ -1,3 +1,5 @@
+// import { userInfoState, userRepoState, currentPageState } from '@/components/stroe'
+// import { useRecoilState } from 'recoil'
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,8 +10,6 @@ export default function Head() {
   // const [userSession,setUserSession] = useRecoilState(userSessionState)
   const { data: session, status } = useSession();
   const loading = status === "loading";
-  // console.log(session)
-  // console.log("pass")
 
   // useEffect(() => {
     // if(session&&Object.keys(userInfo).length==0) {
@@ -59,6 +59,7 @@ export default function Head() {
     // console.log(userInfo)
     // console.log(userRepo)
   // }, [session])
+  // console.log(session)
   return (
     <header>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
