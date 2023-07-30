@@ -22,7 +22,7 @@ export const userSessionState = atom({
 
 export const userRepoState = atom({
   key: "userRepoState",
-  default: []
+  default: {}
 })
 
 export const currentPageState = atom({
