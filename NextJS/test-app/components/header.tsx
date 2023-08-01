@@ -41,25 +41,6 @@ export default function Head() {
         // }else{
 
         // }
-    //     if(session && Object.keys(userRepo).length==0){
-    //       fetch("https://api.github.com/users/"+`${session.user.name}`+"/repos",{
-    //         method: 'GET',
-    //         headers:{
-    //           "Accept": "application/vnd.github+json",
-    //           "Authorization": "Bearer "+`${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-    //           'X-GitHub-Api-Version': '2022-11-28'
-    //         }
-    //         })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //           setUserRepo(data)
-    //         })
-    //     }
-    // // console.log(userSession)
-    // console.log(userInfo)
-    // console.log(userRepo)
-  // }, [session])
-  // console.log(session)
   return (
     <header>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
