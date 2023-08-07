@@ -6,7 +6,7 @@ import SessionProvider from '@/components/provider/SessionProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
