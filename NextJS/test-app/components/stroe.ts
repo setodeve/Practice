@@ -8,16 +8,12 @@ export const searchresultState = atom({
 
 export const userInfoState = atom({
   key: "userInfoState",
-  default: {
-
-  }
+  default: {}
 })
 
 export const userSessionState = atom({
   key: "userSessionState",
-  default: {
-
-  }
+  default: {}
 })
 
 export const userRepoState = atom({

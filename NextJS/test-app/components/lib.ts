@@ -1,5 +1,3 @@
-
-
 export function getUserData(name: string){
   console.log("pass")
   return fetch("https://api.github.com/"+name,{
