@@ -17,7 +17,7 @@ export default async function User(data:any){
   const [currentPage,setCurrentPage] = useRecoilState(currentPageState)
 
   const onPageChange = (page) => {
-    setCurrentPage(page);
+    setCurrentPage(page)
   }; 
 
   if(data&& Object.keys(userRepo).length==0&& Object.keys(userInfo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))

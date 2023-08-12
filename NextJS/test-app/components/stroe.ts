@@ -1,5 +1,5 @@
 "use client"
-import { atom } from "recoil";
+import { atom } from "recoil"
 
 export const searchresultState = atom({
   key: "searchresultState",
