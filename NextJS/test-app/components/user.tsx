@@ -6,9 +6,7 @@ import Pagination from './pagination'
 async function getData(name:string){
   return await fetch("https://api.github.com/users/"+`${name}`)
               .then((res) => res.json())
-              .then((data) => {
-                return data
-              })
+              .then((data) => data)
 }
 
 export default async function User(data:any){
