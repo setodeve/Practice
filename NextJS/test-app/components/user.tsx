@@ -13,10 +13,9 @@ export default async function User(data:any){
   const [userInfo,setUserInfo] = useRecoilState(userInfoState)
   const [userRepo,setUserRepo] = useRecoilState(userRepoState)
   const [currentPage,setCurrentPage] = useRecoilState(currentPageState)
-
   const onPageChange = (page) => {
     setCurrentPage(page)
-  }; 
+  }
 
   if(data&& Object.keys(userRepo).length==0&& Object.keys(userInfo).length==0) setUserRepo(await getData(`${data.name}`+"/repos"))
   if(data&& Object.keys(userInfo).length==0) setUserInfo(await getData(data.name))
