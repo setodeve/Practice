@@ -8,7 +8,6 @@ async function getData(name:string){
               .then((res) => res.json())
               .then((data) => data)
 }
-
 export default async function User(data:any){
   const [userInfo,setUserInfo] = useRecoilState(userInfoState)
   const [userRepo,setUserRepo] = useRecoilState(userRepoState)
