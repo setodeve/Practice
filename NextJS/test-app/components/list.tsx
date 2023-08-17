@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil'
 
 export default function List(){
   const searchresult = useRecoilValue(searchresultState)
+  
   return(
     <>
       <div className='p-2'>
