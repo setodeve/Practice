@@ -18,6 +18,7 @@ export default function Search(){
     const repo = await res.json()
     setSearchresult(repo.items)
   }
+  
   return (
     <form className='p-2' onSubmit={handleSubmit}>
       <input type="text" id="word" name="word" required />
