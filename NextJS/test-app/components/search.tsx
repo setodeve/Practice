@@ -4,6 +4,7 @@ import { FormEvent } from 'react'
 import 'dotenv/config'
 
 export default function Search(){
+  
   const [searchresult,setSearchresult] = useRecoilState(searchresultState)
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -18,7 +19,7 @@ export default function Search(){
     const repo = await res.json()
     setSearchresult(repo.items)
   }
-  
+
   return (
     <form className='p-2' onSubmit={handleSubmit}>
       <input type="text" id="word" name="word" required />
