@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Head() {
-  const { data: session, status } = useSession();
-  const loading = status === "loading";
-  
+  const { data: session, status } = useSession()
+  const loading = status === "loading"
+
   return (
     <header>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
