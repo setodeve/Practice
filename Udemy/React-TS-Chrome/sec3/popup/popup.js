@@ -6,7 +6,9 @@ function addTask(){
   const text = document.createElement("input");
   text.type = "text";
   text.placeholder = "Enter task......";
-
+  text.addEventListener("change",()=>{
+    
+  })
   const deleteBtn = document.createElement("input");
   deleteBtn.type = "button";
   deleteBtn.value = "x";
