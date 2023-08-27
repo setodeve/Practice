@@ -17,7 +17,9 @@ function addTask(){
   const deleteBtn = document.createElement("input");
   deleteBtn.type = "button";
   deleteBtn.value = "x";
-
+  deleteBtn.addEventListener("click",()=>{
+      tasks.splice(taskNum, 1)
+  })
   taskRow.appendChild(text);
   taskRow.appendChild(deleteBtn);
 
