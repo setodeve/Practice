@@ -2,6 +2,10 @@ const tasks = []
 const addTaskBtn = document.getElementById("add-btn");
 addTaskBtn.addEventListener("click", ()=> addTask());
 
+function renderTask(){
+  
+}
+
 function addTask(){
   const taskNum = tasks.length
   tasks.push("")
