@@ -3,13 +3,6 @@ const addTaskBtn = document.getElementById("add-btn");
 addTaskBtn.addEventListener("click", ()=> addTask());
 
 function renderTask(){
-  
-}
-
-function addTask(){
-  const taskNum = tasks.length
-  tasks.push("")
-
   const taskRow = document.createElement("div");
   const text = document.createElement("input");
   text.type = "text";
@@ -29,4 +22,9 @@ function addTask(){
 
   const taskContainer = document.getElementById("task-container");
   taskContainer.appendChild(taskRow)
+}
+
+function addTask(){
+  const taskNum = tasks.length
+  tasks.push("")
 }
