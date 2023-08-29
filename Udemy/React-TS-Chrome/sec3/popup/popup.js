@@ -1,6 +1,17 @@
-const tasks = []
+let tasks = []
 const addTaskBtn = document.getElementById("add-btn");
 addTaskBtn.addEventListener("click", ()=> addTask());
+
+chrome.storage.sync.get(["tasks"],(res)=>{
+  tasks = res.tasks ? res.tasks : []
+  renderTasks()
+})
+
+function saveTasks(){
+  chrome.storage.sync.set({
+    tasks,
+  })
+}
 
 function renderTask(taskNum){
   const taskRow = document.createElement("div");
@@ -10,7 +21,7 @@ function renderTask(taskNum){
   text.value = tasks[taskNum]
   text.addEventListener("change",()=>{
     tasks[taskNum] = text.value
-    console.log(tasks)
+    saveTasks()
   })
   const deleteBtn = document.createElement("input");
   deleteBtn.type = "button";
