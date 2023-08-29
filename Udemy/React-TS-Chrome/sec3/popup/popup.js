@@ -40,11 +40,13 @@ function addTask(){
   const taskNum = tasks.length
   tasks.push("")
   renderTask(taskNum)
+  saveTasks()
 }
 
 function deleteTask(taskNum){
   tasks.splice(taskNum, 1)
   renderTasks()
+  saveTasks()
 }
 
 function renderTasks(){
