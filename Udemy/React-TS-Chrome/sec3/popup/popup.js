@@ -2,8 +2,12 @@ let tasks = []
 
 const setTimerBtn = document.getElementById("start-timer-btn")
 setTimerBtn.addEventListener("click", () => {
-  chrome.storage.local.set({
-    isRunning:true
+  chrome.storage.local.get(["isRunning"], (res) =>{
+    chrome.storage.local.set({
+      isRunning: !res.isRunning
+    }, () =>{
+      setTimerBtn.textContent = !res.isRunning ? "Pause" : "Start"
+    })
   })
 })
 
