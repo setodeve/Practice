@@ -3,6 +3,7 @@ let tasks = []
 function updateTime(){
   chrome.storage.local.get(["timer"], (res)=>{
     const time = document.getElementById("time")
+    const minutes = 25 - res.timer/60
     time.textContent = res.timer
   })
 }
