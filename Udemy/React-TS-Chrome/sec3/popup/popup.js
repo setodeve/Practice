@@ -4,6 +4,7 @@ function updateTime(){
   chrome.storage.local.get(["timer"], (res)=>{
     const time = document.getElementById("time")
     const minutes = 25 - Math.ceil(res.timer/60)
+    let seconds = "00"
     const seconds = 60-res.timer%60
     time.textContent = `${minutes}:${seconds}`
   })
