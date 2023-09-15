@@ -1,5 +1,9 @@
 chrome.runtime.onInstalled.addListener((details) => {
-  console.log(details)
+  chrome.contextMenus.create({
+    title: "Test Menu",
+    id: "contextMenu1",
+    contexts: ["page","selection"]
+  })
 })
 
 console.log("running")
