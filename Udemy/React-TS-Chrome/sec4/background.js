@@ -4,6 +4,9 @@ chrome.runtime.onInstalled.addListener((details) => {
     id: "contextMenu1",
     contexts: ["page","selection"]
   })
+  chrome.contextMenus.onClicked.addListener((event)=>{
+    console.log(event)
+  })
 })
 
 console.log("running")
