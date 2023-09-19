@@ -6,9 +6,9 @@ chrome.runtime.onInstalled.addListener((details) => {
   })
   chrome.contextMenus.onClicked.addListener((event)=>{
     console.log(event)
-    chrome.search.quey({
-      disposition: "NewTab",
-      text:event.selectionText,
+    chrome.search.query({
+      disposition: "NEW_TAB",
+      text: event.selectionText,
     })
   })
 })
