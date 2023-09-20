@@ -6,10 +6,8 @@ chrome.runtime.onInstalled.addListener((details) => {
   })
   chrome.contextMenus.onClicked.addListener((event)=>{
     console.log(event)
-    chrome.tabs.query({
-      currentWindow: true,
-    },(tabs) => {
-      console.log(tabs)
+    chrome.tabs.create({
+      url: `https://www.imdb.com/find/?q=${event.selectionText}&ref_=nv_sr_sm`
     })
   })
 })
