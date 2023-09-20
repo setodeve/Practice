@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     console.log(event)
     chrome.search.query({
       disposition: "NEW_TAB",
-      text: event.selectionText,
+      text: `imdb ${event.selectionText}`,
     })
   })
 })
