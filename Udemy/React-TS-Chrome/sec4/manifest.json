@@ -19,7 +19,7 @@
   "permissions": ["contextMenus","search","tabs"],
   "content_scripts": [
     {
-      "matches": ["call_urls>"],
+      "matches": ["<all_urls>"],
       "js": ["contentScript.js"]
     }
   ]
