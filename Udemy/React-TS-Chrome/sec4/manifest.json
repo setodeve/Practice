@@ -19,7 +19,8 @@
   "permissions": ["contextMenus","search","tabs"],
   "content_scripts": [
     {
-      "matches": ["https://www.google.co.jp/*"],
+      "matches": ["https://*.google.com/*"],
+      "exclude_matches": ["https://store.google.com/*"],
       "js": ["contentScript.js"]
     }
   ]
