@@ -21,6 +21,7 @@
     {
       "matches": ["https://*.google.com/*"],
       "exclude_matches": ["https://store.google.com/*"],
+      "css": ["contentScript.css"],
       "js": ["contentScript.js"]
     }
   ]
