@@ -19,7 +19,7 @@
   "permissions": ["contextMenus","search","tabs"],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["https://www.google.co.jp/*"],
       "js": ["contentScript.js"]
     }
   ]
