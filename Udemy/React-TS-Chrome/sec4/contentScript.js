@@ -1,2 +1,5 @@
 console.log("test")
-const aTaggs = document.getElementById("a")
+const aTags = document.getElementById("a")
+for (const tag of aTags){
+  tag.textContent = "Hello"
+}
