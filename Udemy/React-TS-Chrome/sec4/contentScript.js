@@ -1,5 +1,7 @@
 console.log("test")
-const aTags = document.getElementById("a")
+const aTags = document.getElementsByTagName("a")
 for (const tag of aTags){
-  tag.textContent = "Hello"
+  if(tag.textContent.includes("i")){
+    tag.style = "background-color: yellow;"
+  }
 }
