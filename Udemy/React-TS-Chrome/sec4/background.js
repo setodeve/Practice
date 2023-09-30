@@ -11,3 +11,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     })
   })
 })
+
+chrome.storage.local.get(["text"], (res) => {
+  console.log(res)
+})
