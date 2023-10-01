@@ -7,3 +7,5 @@ for (const tag of aTags){
 chrome.storage.local.set({
   text,
 })
+
+chrome.runtime.sendMessage(null,text)
