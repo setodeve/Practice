@@ -15,3 +15,9 @@ chrome.runtime.onInstalled.addListener((details) => {
 chrome.storage.local.get(["text"], (res) => {
   console.log(res)
 })
+
+chrome.runtime.onMessage.addListener((msg,sender,sendResponse) =>{
+  console.log(msg)
+  console.log(sender)
+  console.log(sendResponse)  
+})
