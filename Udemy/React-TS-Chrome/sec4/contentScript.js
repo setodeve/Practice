@@ -8,4 +8,6 @@ chrome.storage.local.set({
   text,
 })
 
-chrome.runtime.sendMessage(null,text)
+chrome.runtime.sendMessage(null,text, (res) => {
+  console.log(res)
+})
