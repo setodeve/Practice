@@ -10,8 +10,9 @@ class InetSetting:
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
     def address_bind(self):
-        sock = self.sock
-        sock.bind(self.address,self.port)
+        # sock = self.sock
+        address = (self.address,self.port)
+        self.sock.bind(address)
         print('starting up on {}'.format(self.address))
 
     def address_unlink(self):
