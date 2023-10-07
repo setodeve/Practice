@@ -1,6 +1,5 @@
 from inetsetting import InetSetting
 import json
-# from faker import Faker
 class Client(InetSetting):
     def __init__(self) -> None:
         super().__init__('127.0.0.2',1234)
@@ -11,9 +10,6 @@ class Client(InetSetting):
         }
 
     def exectsend(self)-> None:
-      # fake = Faker()
-      # message = fake.name
-
       # self.address_bind()
       while True:
         try:
