@@ -20,4 +20,5 @@ chrome.runtime.onMessage.addListener((msg,sender,sendResponse) =>{
   console.log(msg)
   console.log(sender)
   sendResponse("testres")
+  chrome.tabs.sendMessage(sender.tab.id,"Gpt message from background")
 })
