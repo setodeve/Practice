@@ -11,3 +11,8 @@ chrome.storage.local.set({
 chrome.runtime.sendMessage(null,text, (res) => {
   console.log(res)
 })
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log(message)
+  console.log(sender)
+})
