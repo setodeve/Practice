@@ -1,5 +1,6 @@
 from inetsetting import InetSetting
 import json
+
 class Client(InetSetting):
     def __init__(self) -> None:
         super().__init__('127.0.0.2',1234)
