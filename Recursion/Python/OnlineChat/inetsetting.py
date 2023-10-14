@@ -13,8 +13,7 @@ class InetSetting:
 
     def address_bind(self):
         # sock = self.sock
-        address = (self.address,self.port)
-        self.sock.bind(address)
+        self.sock.bind(self.setinfo)
         print('starting up on {}'.format(self.address))
 
     def address_unlink(self):
