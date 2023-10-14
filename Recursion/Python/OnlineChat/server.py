@@ -1,11 +1,10 @@
 from inetsetting import InetSetting
-import socket
 import time
 
 class Server(InetSetting):
     def __init__(self) -> None:
         super().__init__('127.0.0.1',8890)
-        
+
     def exectreciecve(self)-> None:
         print('starting up on {}'.format(self.address))
         self.address_bind()
