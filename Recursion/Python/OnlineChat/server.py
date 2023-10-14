@@ -10,16 +10,13 @@ class Server(InetSetting):
 
         while True:
             try :
-                # ③Clientからのmessageの受付開始
                 print('Waiting message')
                 message, cli_addr = self.sock.recvfrom(self.size)
                 message = message.decode(encoding='utf-8')
                 print(f'Received message is [{message}]')
 
-                # Clientが受信待ちになるまで待つため
                 time.sleep(1)
 
-                # ④Clientへ受信完了messageを送信
                 print('Send response to Client')
                 self.sock.sendto('Success to receive message'.encode(encoding='utf-8'), cli_addr)
 
