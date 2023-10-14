@@ -9,6 +9,7 @@ class InetSetting:
         self.port = port
         self.setinfo = (address, port)
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+        print('create socket')
         self.size = 1024
 
     # def address_bind(self):
