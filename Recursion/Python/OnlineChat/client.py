@@ -19,13 +19,13 @@ class Client(InetSetting):
               else:
                   print('closing socket')
                   self.sock.close()
-                  print('done')
+                  # print('done')
                   break
 
           except KeyboardInterrupt:
               print('closing socket')
               self.sock.close()
-              print('done')
+              # print('done')
               break
 
 client = Client()
