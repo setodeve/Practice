@@ -2,7 +2,7 @@ from inetsetting import InetSetting
 
 class Client(InetSetting):
     def __init__(self) -> None:
-        super().__init__('127.0.0.1',8890)
+        super().__init__('0.0.0.0',9001)
 
     def exectsend(self)-> None:
       while True:

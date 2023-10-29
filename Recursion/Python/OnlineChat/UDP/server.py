@@ -3,7 +3,7 @@ import time
 
 class Server(InetSetting):
     def __init__(self) -> None:
-        super().__init__('127.0.0.1',8890)
+        super().__init__('0.0.0.0',9001)
 
     def exectreciecve(self)-> None:
         self.sock.bind(self.setinfo)
