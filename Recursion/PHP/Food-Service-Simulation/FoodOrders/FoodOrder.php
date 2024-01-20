@@ -2,8 +2,6 @@
 
 namespace FoodOrders;
 
-// use \FoodItems\FoodItem;
-
 class FoodOrder {
   protected string $orderTime;
   protected array $items;
