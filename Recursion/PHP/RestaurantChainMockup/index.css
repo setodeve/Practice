@@ -1,0 +1,56 @@
+details {
+  background: #c3f6ff;
+}
+
+deitals[open] summary:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.main{
+  width: auto ;
+  height: auto;
+  margin: 0 auto;
+}
+
+.restaurant-chain {
+  position: relative;
+  display: block;
+  padding: 10px 10px 10px 30px;
+  margin: 10px 0px 10px 0px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.restaurant-chain::-webkit-details-marker {
+  display: none;
+}
+
+.restaurant-chain-name{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restaurant-location {
+  padding: 0px 0px 0px 10px;
+}
+
+.restaurant-location-info{
+  padding: 0px 0px 0px 20px;
+}
+
+.user-card{
+  list-style: none;
+  padding: 0px 0px 0px 30px;
+}
+
+.user-info{
+  padding: 0px 0px 0px 40px;
+}
