@@ -56,7 +56,11 @@ class User implements FileConvertible {
         return $currentDate > $this->membershipExpirationDate;
     }
 
-    public function getfirstName(){
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getFirstName(){
         return $this->firstName;
     }
 
@@ -64,31 +68,30 @@ class User implements FileConvertible {
         return $this->lastName;
     }
 
-    // Getter for Email
     public function getEmail() {
         return $this->email;
     }
-    // Getter for Phone Number
+
+    public function getHashedPassword() {
+        return $this->hashedPassword;
+    }
+
     public function getPhoneNumber() {
         return $this->phoneNumber;
     }
 
-    // Getter for Address
     public function getAddress() {
         return $this->address;
     }
 
-    // Getter for Birth Date
     public function getBirthDate() {
         return $this->birthDate;
     }
 
-    // Getter for Membership Expiration Date
     public function getMembershipExpirationDate() {
         return $this->membershipExpirationDate;
     }
 
-    // Getter for Role
     public function getRole() {
         return $this->role;
     }

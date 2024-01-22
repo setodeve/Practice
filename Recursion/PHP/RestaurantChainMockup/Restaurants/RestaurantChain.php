@@ -17,7 +17,7 @@ class RestaurantChain extends Company {
       $this->cuisineType = $cuisineType;
       $this->parentCompany = $parentCompany;
       $this->restaurantLocations = $restaurantLocations;
-      $this->numberOfLocations = 0;
+      $this->numberOfLocations = count($restaurantLocations);
   }
 
   public function getChainId() {
@@ -57,6 +57,66 @@ class RestaurantChain extends Company {
 
   public function setParentCompany($parentCompany) {
       $this->parentCompany = $parentCompany;
+  }
+
+  public function toString(): string {
+    return sprintf(
+        "■Chain Id: %s\nName: %s\nFoundingYear: %s\nDescription: %s\nWebsite: %s\nPhoneNumber: %s\nIndustry: %s\nCeo: %s\nIsPubliclyTraded: %s\nCountry: %s\nFounder: %s\nTotalEmployees: %s\ncuisineType: %s\nparentCompany: %s\nnumberOfLocations: %s\n\n",
+        $this->chainId,
+        $this->getName(),
+        $this->getFoundingYear(),
+        $this->getDescription(),
+        $this->getWebsite(),
+        $this->getPhone(),
+        $this->getIndustry(),
+        $this->getCeo(),
+        $this->getIsPubliclyTraded(),
+        $this->getCountry(),
+        $this->getFounder(),
+        $this->getTotalEmployees(),
+        $this->cuisineType,
+        $this->parentCompany,
+        $this->numberOfLocations
+    );
+  }
+
+  public function toMarkdown() : string {
+    return 
+"
+## Chain_Name: {$this->getName()}
+- ChainId: {$this->chainId}
+- FoundingYear: {$this->getFoundingyear()}
+- Description: {$this->getDescription()}
+- Website: {$this->getWebsite()}
+- Industry: {$this->getIndustry()}
+- Ceo: {$this->getCeo()}
+- IsPubliclyTraded: {$this->getIsPubliclyTraded()}
+- Country: {$this->getCountry()}
+- Founder: {$this->getFounder()}
+- TotalEmployees: {$this->getTotalEmployees()}
+- cuisineType: {$this->cuisineType}
+- parentCompany: {$this->parentCompany}
+- numberOfLocations: {$this->numberOfLocations}
+
+";
+  }
+
+  public function toArray() : array {
+    return [
+        'id' => $this->chainId,
+        'foundingYear' => $this->getFoundingyear(),
+        'description' => $this->getDescription(),
+        'website' => $this->getWebsite(),
+        'industry' => $this->getIndustry(),
+        'ceo' => $this->getCeo(),
+        'isPubliclyTraded' => $this->getIsPubliclyTraded(),
+        'country' => $this->getCountry(),
+        'founder' => $this->getFounder(),
+        'totalEmployees' => $this->getTotalEmployees(),
+        'cuisineType' => $this->cuisineType,
+        'parentCompany' => $this->parentCompany,
+        'numberOfLocations' => $this->numberOfLocations
+      ];
   }
 
 }

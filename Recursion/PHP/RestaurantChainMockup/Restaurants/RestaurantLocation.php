@@ -2,14 +2,14 @@
 namespace Restaurants;
 
 use \Users\Employee;
-
-class RestaurantLocation {
+use File\FileConvertible;
+class RestaurantLocation implements FileConvertible {
   private $name;
   private $address;
   private $city;
   private $state;
   private $zipCode;
-  private $employees; // This will be an array of Employee objects
+  private $employees;
   private $isOpen;
   private $hasDriveThru;
 
@@ -68,6 +68,41 @@ class RestaurantLocation {
         $this->address,
         $this->zipCode
     );
+  }
+
+  public function toString(): string {
+    return sprintf(
+        "●Location Name: %s\nAddress: %s\nCity: %s\nState: %s\nZipCode: %s\nDrivenThru: %s\n\n",
+        $this->name,
+        $this->address,
+        $this->city,
+        $this->state,
+        $this->zipCode,
+        $this->hasDriveThru
+    );
+  }
+
+  public function toMarkdown() : string {
+    return 
+"
+### Location_Name: {$this->name}
+- address: {$this->address}
+- city: {$this->city}
+- state: {$this->state}
+- zipCode: {$this->zipCode}
+- hasDriveThru: {$this->hasDriveThru}
+";
+  }
+
+  public function toArray() : array {
+    return [
+        'name' => $this->name,
+        'address' => $this->address,
+        'city' => $this->city,
+        'state' => $this->state,
+        'zipCode' => $this->zipCode,
+        'hasDriveThru' => $this->hasDriveThru
+      ];
   }
 }
 

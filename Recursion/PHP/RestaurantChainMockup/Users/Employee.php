@@ -33,6 +33,24 @@ class Employee extends User {
     $this->awards = $awards;
   }
 
+  public function toString(): string {
+    return sprintf(
+        "・Employee ID: %d\nName: %s %s\nEmail: %s\nPhone Number: %s\nAddress: %s\nBirth Date: %s\nMembership Expiration Date: %s\nRole: %s\nJobTitle: %s\nSalary: %s\nStartDate: %s\n\n",
+        $this->getId(),
+        $this->getFirstName(),
+        $this->getLastName(),
+        $this->getEmail(),
+        $this->getPhoneNumber(),
+        $this->getAddress(),
+        $this->getBirthDate()->format('Y-m-d'),
+        $this->getMembershipExpirationDate()->format('Y-m-d'),
+        $this->getRole(),
+        $this->jobTitle,
+        $this->salary,
+        $this->startDate
+    );
+}
+
   public function toHTML() : string {
     return sprintf("
         <details class='user-card'>
@@ -49,7 +67,7 @@ class Employee extends User {
               <li>StartDate: %s</li>
             </div>
         </details>",
-        $this->getfirstName(),
+        $this->getFirstName(),
         $this->getLastName(),
         $this->getEmail(),
         $this->getPhoneNumber(),
@@ -61,6 +79,44 @@ class Employee extends User {
         $this->salary,
         $this->startDate
     );
+  }
+
+  public function toMarkdown() : string {
+    return 
+"
+
+  #### Employee_Name: {$this->getFirstName()} {$this->getlastName()}
+
+  - Email: {$this->getEmail()}
+  - Phone Number: {$this->getPhoneNumber()}
+  - Address: {$this->getAddress()}
+  - Birth Date: {$this->getBirthDate()->format('Y-m-d')}
+  - Is Active: {$this->getMembershipExpirationDate()->format('Y-m-d')}
+  - Role: {$this->getRole()}
+  - JobTitle: {$this->jobTitle}
+  - Salary: {$this->salary}
+  - StartDate: {$this->startDate}
+
+
+";
+  }
+
+  public function toArray() : array {
+    return [
+        'id' => $this->getId(),
+        'firstName' => $this->getFirstName(),
+        'lastName' => $this->getlastName(),
+        'email' => $this->getEmail(),
+        'password' => $this->getHashedPassword(),
+        'phoneNumber' => $this->getPhoneNumber(),
+        'address' => $this->getAddress(),
+        'birthDate' => $this->getBirthDate()->format('Y-m-d'),
+        'isActive' => $this->getMembershipExpirationDate()->format('Y-m-d'),
+        'role' => $this->getRole(),
+        'jobTitle' => $this->jobTitle,
+        'Salary' => $this->salary,
+        'StartDate' => $this->startDate
+      ];
   }
 }
 ?>

@@ -35,10 +35,50 @@ class Company implements FileConvertible {
     return $this->name;
   }
 
-  public function getN() {
-    return $this->name;
+  // descriptionプロパティのgetter
+  public function getDescription() {
+      return $this->description;
   }
 
+  // websiteプロパティのgetter
+  public function getWebsite() {
+      return $this->website;
+  }
+
+  // phoneプロパティのgetter
+  public function getPhone() {
+      return $this->phone;
+  }
+
+  // industryプロパティのgetter
+  public function getIndustry() {
+      return $this->industry;
+  }
+
+  // ceoプロパティのgetter
+  public function getCeo() {
+      return $this->ceo;
+  }
+
+  // isPubliclyTradedプロパティのgetter
+  public function getIsPubliclyTraded() {
+      return $this->isPubliclyTraded;
+  }
+
+  // countryプロパティのgetter
+  public function getCountry() {
+      return $this->country;
+  }
+
+  // founderプロパティのgetter
+  public function getFounder() {
+      return $this->founder;
+  }
+
+  // totalEmployeesプロパティのgetter
+  public function getTotalEmployees() {
+      return $this->totalEmployees;
+  }
   public function setName($name) {
       $this->name = $name;
   }

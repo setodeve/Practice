@@ -4,20 +4,29 @@ spl_autoload_register();
 require_once 'vendor/autoload.php';
 use \Helpers\RandomGenerator;
 
-$min = $_GET['min'] ?? 5;
-$max = $_GET['max'] ?? 10;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $format = $_POST["format"];
+    
+    $restauchain = RandomGenerator::generateData();
 
-$min = (int)$min;
-$max = (int)$max;
-
-$restauchain = [];
-for ($num = 0; $num < rand(1,10); $num++){
-    $restaurantlocation = [];
-    for ($num = 0; $num < rand(1,5); $num++){
-        array_push($restaurantlocation,RandomGenerator::generateRestauntLocation(RandomGenerator::employees($min, $max)));
+    if ($format == 'markdown'){
+      RandomGenerator::generateMD($restauchain);
+      header('Location: generate.php');
+      exit;
+    } elseif ($format == 'json') {
+      RandomGenerator::generateJson($restauchain);
+      header('Location: generate.php');
+      exit;
+    } elseif ($format == 'txt') {
+      RandomGenerator::generateTxt($restauchain);
+      header('Location: generate.php');
+      exit;
+    } else {
+        
     }
-    array_push($restauchain, RandomGenerator::generateRestaurantChain($restaurantlocation));
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,27 +39,28 @@ for ($num = 0; $num < rand(1,10); $num++){
 </head>
 <body>
     <div class="main">
-        <?php foreach ($restauchain as $rc): ?>
-            <h2 class="restaurant-chain-title"><?php echo $rc->getName()?></h2>
-            <details class="restaurant-chain">
-                <summary class="restaurant-chain-name">
-                    Restaurant Chain Infomation
-                </summary>
-                <?php foreach ($rc->getRestaurantLocations() as $rl): ?>
-                    <details class="restaurant-location">
-                        <summary>
-                            <?php echo $rl->getName()?>
-                        </summary>
-                        <?php echo $rl->toHtml()?>
-                        <?php 
-                            foreach ($rl->getEmployees() as $employee):
-                                echo $employee->toHTML();
-                            endforeach;
-                        ?>
-                    </details>
-                <?php endforeach; ?>
-            </details>
-        <?php endforeach; ?>
+        <?php $format=="html" ?>
+            <?php foreach ($restauchain as $rc): ?>
+                <h2 class="restaurant-chain-title"><?php echo $rc->getName()?></h2>
+                <details class="restaurant-chain">
+                    <summary class="restaurant-chain-name">
+                        Restaurant Chain Infomation
+                    </summary>
+                    <?php foreach ($rc->getRestaurantLocations() as $rl): ?>
+                        <details class="restaurant-location">
+                            <summary>
+                                <?php echo $rl->getName()?>
+                            </summary>
+                            <?php echo $rl->toHtml()?>
+                            <?php 
+                                foreach ($rl->getEmployees() as $em):
+                                    echo $em->toHTML();
+                                endforeach;
+                            ?>
+                        </details>
+                    <?php endforeach; ?>
+                </details>
+            <?php endforeach; ?>
     </div>
 </body>
 </html>
