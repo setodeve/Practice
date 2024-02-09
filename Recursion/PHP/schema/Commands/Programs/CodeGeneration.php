@@ -3,49 +3,82 @@
 namespace Commands\Programs;
 
 use Commands\AbstractCommand;
+use Commands\Argument;
 
 class CodeGeneration extends AbstractCommand
 {
+    // 使用するコマンド名を設定します
     protected static ?string $alias = 'code-gen';
     protected static bool $requiredCommandValue = true;
 
+    // 引数を割り当てます
     public static function getArguments(): array
     {
-        return [];
+        return [
+            (new Argument('name'))->description('Name of the file that is to be generated.')->required(false),
+        ];
     }
 
     public function execute(): int
     {
         $codeGenType = $this->getCommandValue();
-        $className = ucfirst($codeGenType);
-        $fileName = "./Commands/Programs/" . $className . ".php";
-        $open_output = <<<PHP
+        $this->log('Generating code for.......' . $codeGenType);
+
+        if ($codeGenType === 'migration') {
+            $migrationName = $this->getArgumentValue('name');
+            $this->generateMigrationFile($migrationName);
+        }
+
+        return 0;
+    }
+
+    private function generateMigrationFile(string $migrationName): void
+    {
+        $filename = sprintf(
+            '%s_%s_%s.php',
+            date('Y-m-d'),
+            time(),
+            $migrationName
+        );
+
+        $migrationContent = $this->getMigrationContent($migrationName);
+
+        // 移行ファイルを保存するパスを指定します
+        $path = sprintf("%s/../../Database/Migrations/%s", __DIR__,$filename);
+
+        file_put_contents($path, $migrationContent);
+        $this->log("Migration file {$filename} has been generated!");
+    }
+
+    private function getMigrationContent(string $migrationName): string
+    {
+        $className = $this->pascalCase($migrationName);
+
+        return <<<MIGRATION
         <?php
-    
-        namespace Commands\Programs;
-        
-        use Commands\AbstractCommand;
-        use Commands\Argument;
-        
-        class $className extends AbstractCommand
+
+        namespace Database\Migrations;
+
+        use Database\SchemaMigration;
+
+        class {$className} implements SchemaMigration
         {
-            protected static ?string \$alias = '$codeGenType';
-        
-            public static function getArguments(): array
+            public function up(): array
             {
+                // マイグレーションロジックをここに追加してください
                 return [];
             }
-        
-            public function execute(): int
+
+            public function down(): array
             {
-                return 0;
+                // ロールバックロジックを追加してください
+                return [];
             }
         }
-        ?>
-        PHP;
+        MIGRATION;
+    }
 
-        file_put_contents($fileName, $open_output);
-        $this->log('Generated in '.$fileName );
-        return 0;
+    private function pascalCase(string $string): string{
+        return str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
     }
 }
