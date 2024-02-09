@@ -6,11 +6,9 @@ use Commands\AbstractCommand;
 
 class CodeGeneration extends AbstractCommand
 {
-    // 使用するコマンド名を設定
     protected static ?string $alias = 'code-gen';
     protected static bool $requiredCommandValue = true;
 
-    // 引数を割り当て
     public static function getArguments(): array
     {
         return [];
@@ -19,7 +17,35 @@ class CodeGeneration extends AbstractCommand
     public function execute(): int
     {
         $codeGenType = $this->getCommandValue();
-        $this->log('Generating code for.......' . $codeGenType);
+        $className = ucfirst($codeGenType);
+        $fileName = "./Commands/Programs/" . $className . ".php";
+        $open_output = <<<PHP
+        <?php
+    
+        namespace Commands\Programs;
+        
+        use Commands\AbstractCommand;
+        use Commands\Argument;
+        
+        class $className extends AbstractCommand
+        {
+            protected static ?string \$alias = '$codeGenType';
+        
+            public static function getArguments(): array
+            {
+                return [];
+            }
+        
+            public function execute(): int
+            {
+                return 0;
+            }
+        }
+        ?>
+        PHP;
+
+        file_put_contents($fileName, $open_output);
+        $this->log('Generated in '.$fileName );
         return 0;
     }
 }
