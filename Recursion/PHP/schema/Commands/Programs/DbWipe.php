@@ -23,7 +23,7 @@ class DbWipe extends AbstractCommand
           shell_exec("mysqldump practice_db > backup.sql");
           $this->log('Backupping.......');
         }else{
-          shell_exec("mysqldump practice_db < backup.sql");
+          shell_exec("mysql practice_db < backup.sql");
           $this->log('Restoring.......');
         }
         
