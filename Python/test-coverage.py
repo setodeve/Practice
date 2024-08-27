@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # スクレイピングするURL
-url = 'http://127.0.0.1:8080/'
+url = 'http://localhost:4173/'
 
 # requestsを使ってWebページを取得
 response = requests.get(url)
