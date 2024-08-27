@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure--kc=cm#4!nfnkur()4a=seo=q!77tpw%bg_!px-!1b_0^hwr-9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','0.0.0.0']
+CORS_ALLOW_CREDENTIALS = True
+
+ALLOWED_HOSTS = ['localhost','0.0.0.0','django.django-nuxt-test.orb.local']
 
 # Application definition
 
@@ -56,6 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://nuxt.django-nuxt-test.orb.local"
 ]
 
 ROOT_URLCONF = 'mainproject.urls'

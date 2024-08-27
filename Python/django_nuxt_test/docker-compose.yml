@@ -5,7 +5,7 @@ services:
     build: ./backend
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend:/usr/src/app/
+      - ./backend:/back/
     ports:
       - "8000:8000"
     environment:
@@ -23,6 +23,16 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  nuxt:
+    build: ./frontend/
+    tty: true
+    volumes:
+      - ./frontend:/front/
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   postgres_data:
