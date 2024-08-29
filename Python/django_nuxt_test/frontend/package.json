@@ -15,5 +15,11 @@
     "vue": "latest",
     "yup": "^1.4.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
+  "resoltuions": {
+    "rollup": "npm:@rollup/wasm-node@*"
+  },
   "packageManager": "pnpm@9.8.0+sha1.33f415ae4331f9b29a92dd9bbef959b916d65535"
 }

@@ -6,43 +6,43 @@
     <div class="container form">
       <label for="name"><b>Username</b></label>
       <input
-        v-model="user.username"
+        v-model="username"
         type="text"
         class="input"
         placeholder="Enter Username"
         id="name"
         required
       />
-
+      <p>{{ nameError }}</p>
       <label for="password"><b>Password</b></label>
       <input
-        v-model="user.password"
+        v-model="password"
         type="password"
         class="input"
         placeholder="Enter Password"
         id="password"
         required
       />
-
+      <p>{{ passwordError }}</p>
       <button @click.prevent="login" class="button">Login</button>
-    </div>
+    </div>    
   </div>
 </template>
 <script setup>
-const user = ref({
-  username: '',
-  password: '',
-});
+import { useField } from 'vee-validate';
+import * as yup from 'yup';
+
+const { value: username, errorMessage: nameError } = useField(
+  'username',
+  yup.string().required("この項目は必須です").max(3,"3文字以内で入力してください")
+);
+const { value: password, errorMessage: passwordError } = useField(
+  'password',
+  yup.string().required("この項目は必須です").min(8,"８文字以上で入力してください")
+);
 
 const login = async () => {
-  if (!user.value.username || !user.value.password) {
-    alert('Please enter username and password');
-    return;
-  }
-  // const { data } = await useFetch('/api/login', {
-  //   method: 'POST',
-  //   body: user.value,
-  // });
-  console.log(user.value);
+  console.log(username);
+  console.log(password);
 };
 </script>
