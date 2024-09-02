@@ -1,3 +1,22 @@
+<script setup>
+import { useField } from 'vee-validate';
+import { string } from 'yup';
+
+const { value: username, errorMessage: nameError } = useField(
+  'username',
+  string().required("この項目は必須です").max(3,"3文字以内で入力してください")
+);
+const { value: password, errorMessage: passwordError } = useField(
+  'password',
+  string().required("この項目は必須です").min(8,"８文字以上で入力してください")
+);
+
+const login = async () => {
+  console.log(username);
+  console.log(password);
+};
+</script>
+
 <template>
   <div>
     <div class="title">
@@ -28,21 +47,3 @@
     </div>    
   </div>
 </template>
-<script setup>
-import { useField } from 'vee-validate';
-import * as yup from 'yup';
-
-const { value: username, errorMessage: nameError } = useField(
-  'username',
-  yup.string().required("この項目は必須です").max(3,"3文字以内で入力してください")
-);
-const { value: password, errorMessage: passwordError } = useField(
-  'password',
-  yup.string().required("この項目は必須です").min(8,"８文字以上で入力してください")
-);
-
-const login = async () => {
-  console.log(username);
-  console.log(password);
-};
-</script>
