@@ -1,0 +1,6 @@
+numpy
+django
+mysqlclient
+boto3
+pynamodb
+djangorestframework
