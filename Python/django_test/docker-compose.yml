@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   app:
@@ -7,11 +7,14 @@ services:
     volumes:
      - ./django/code/:/code
     ports:
-     - 8000:8000
+     - 58080:8000
     command: python mysite/manage.py runserver 0.0.0.0:8000
     depends_on:
       db:
         condition: service_healthy
+      dynamodb:
+        condition: service_started
+
   db:
     container_name: mysql
     build: ./mysql
@@ -20,19 +23,36 @@ services:
       - ./mysql/data:/var/lib/mysql
     ports:
       - 3333:3306
-    expose:
-      - 3333
     environment:
       TZ: 'Asia/Tokyo'
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: 'django'
       MYSQL_USER: 'django'
       MYSQL_PASSWORD: 'django'
-      # MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-    # privileged: true
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
-      interval: 3s
-      timeout: 3s
-      retries: 3
-      start_period: 5s
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  dynamodb:
+    container_name: example-dynamodb
+    image: amazon/dynamodb-local
+    command: ["-jar", "DynamoDBLocal.jar", "-dbPath", "/home/dynamodblocal/data"]
+    volumes:
+      - ./persist/dynamodb:/home/dynamodblocal/data
+    ports:
+      - 50706:8000
+
+  dynamodb-admin:
+    container_name: example-dynamodb-admin
+    build: ./dynamodb-admin/
+    command: ["dynamodb-admin", "-p", "8000"]
+    env_file: ./dynamodb-admin/.env
+    environment: 
+      DYNAMO_ENDPOINT: http://example-dynamodb:8000
+    ports:
+      - 50727:8000
+    depends_on:
+      - dynamodb
