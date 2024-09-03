@@ -24,3 +24,22 @@ sudo docker-compose up -d
 ```
 sudo docker-compose up -d
 ```
+## その他
+### ツール、ライブラリ紹介
+- dynamodb-local
+  - ローカル環境でDynamoDBを立ち上げるためのツール
+- dynamodb-admin
+  - dynamodb-local管理用のGUIツール
+  - 以下URLでアクセス可能
+    - http://localhost:50727
+- boto3
+  - dynamodbを操作するためのライブラリ
+- minio
+  - S3互換のオブジェクトストレージツール
+  - 以下URLでアクセス可能
+    - http://localhost:9001/login
+      - ユーザー名: minio
+      - パスワード: minio123
+- django-minio-storage
+  - minioとの連携を行うためのライブラリ
+

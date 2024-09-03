@@ -1,8 +1,8 @@
 FROM python:3.9.16
 
-WORKDIR /code
+WORKDIR /django
 
-COPY ./code /code
+COPY . /django
 
 RUN pip install --upgrade pip 
 
