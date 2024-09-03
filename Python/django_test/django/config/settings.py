@@ -80,6 +80,9 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': 'db',
         'PORT': '3306',
+        'OPTIONS': {
+            'auth_plugin': 'caching_sha2_password',
+        },
     }
 }
 

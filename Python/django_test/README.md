@@ -7,8 +7,8 @@ sudo docker-compose build --no-cache
 #コンテナに入る
 sudo docker-compose run app bash
 #コンテナに入りマイグレーションとユーザー作成を行う
-python config/manage.py migrate
-python config/manage.py createsuperuser
+python manage.py migrate
+python manage.py createsuperuser
 
 #コンテナを立ち上げる
 sudo docker-compose up -d

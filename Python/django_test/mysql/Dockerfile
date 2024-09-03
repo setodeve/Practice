@@ -1,4 +1,1 @@
-FROM mysql:latest
-
-ENV TZ "Asia/Tokyo"
-ENV MYSQL_ROOT_PASSWORD root
+FROM mysql:8.4.2

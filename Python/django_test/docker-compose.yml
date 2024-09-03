@@ -17,6 +17,7 @@ services:
 
   db:
     container_name: mysql
+    image: mysql:8.4.2
     build: ./mysql
     restart: always
     volumes:
@@ -29,6 +30,7 @@ services:
       MYSQL_DATABASE: 'django'
       MYSQL_USER: 'django'
       MYSQL_PASSWORD: 'django'
+      MYSQL_DEFAULT_AUTHENTICATION_PLUGIN: caching_sha2_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
       interval: 10s
