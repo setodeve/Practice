@@ -1,2 +1,2 @@
-/mysql/data
-/persist/dynamodb
+mysql/data
+minio/data/.minio.sys/*

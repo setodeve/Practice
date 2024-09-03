@@ -4,3 +4,4 @@ mysqlclient
 boto3
 pynamodb
 djangorestframework
+django-minio-storage
