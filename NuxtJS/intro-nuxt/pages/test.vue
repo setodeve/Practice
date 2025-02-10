@@ -1,3 +1,3 @@
 <template>
-  <NuxtPage />
+  <p>Test Page</p>
 </template>
